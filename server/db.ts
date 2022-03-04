@@ -1,13 +1,17 @@
 import { Client } from "pg";
 import fs from "fs";
+
+const sslVar = process.env.NODE_ENV === "development" ? false : {
+  rejectUnauthorized: false,
+}
 const db = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: false
-}); 
+  ssl: sslVar,
+});
 
 if (process.env.NODE_ENV !== "production") {
   var queries = fs
-    .readFileSync(__dirname + "/init.sql")
+    .readFileSync("init.sql")
     .toString()
     .replace(/(\r\n|\n|\r)/gm, " ") // remove newlines
     .replace(/\s+/g, " ") // excess white space
