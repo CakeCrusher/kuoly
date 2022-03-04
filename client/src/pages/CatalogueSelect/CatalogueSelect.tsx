@@ -1,69 +1,33 @@
-import React, { useEffect } from "react";
-import { useQuery, useMutation } from "@apollo/client";
-import { Link, useParams } from "react-router-dom";
-import CreateCatalogueButton from "../../components/CreateCatalogueButton";
-import { DELTETE_CATALOGUE, MY_CATALOGUES } from "../../graphql/schemas";
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+import { MY_CATALOGUES } from "../../graphql/schemas";
+import { apolloHookErrorHandler } from "../../utils/functions";
 
-const CatalogueRow: React.FC<CatalogueStub> = ({
-  id,
-  //user_id,
-  title,
-  //created,
-  //updated,
-}) => {
-  //@ts-ignore
-  //TODO: Do something with this data
-  const [deleteCatalogue, { data, loading, error }] = useMutation(
-    DELTETE_CATALOGUE,
-    { variables: { id } }
-  );
-
-  const handleDelete = () => {
-    deleteCatalogue();
-  };
-
-  return (
-    <div className="row">
-      <div className="col-8">{title}</div>
-      <div className="col-4">
-        <Link className="btn btn-primary" to={`/list/${id}`}>
-          Go
-        </Link>
-        <button className="btn btn-danger" onClick={handleDelete}>
-          Del
-        </button>
-      </div>
-    </div>
-  );
-};
+import "./CatalogueSelect.less";
+import { CatalogueSelectItems } from "../../containers";
 
 const CatalogueSelect = () => {
   //@ts-ignore
   const { user_id } = useParams();
 
   const results = useQuery(MY_CATALOGUES);
-  console.log("results.data", results.data);
+  apolloHookErrorHandler("CatalogueSelect.tsx", results.error);
+  console.log(results);
 
   if (results.loading) {
     return <div>Loading...</div>;
   }
+
   return (
-    <div data-testid="test">
-      <div className="row">
-        <h2>Your Catalogues</h2>
-      </div>
-      <div className="row">
-        <div className="col-2">
-          <Link className="btn btn-primary" to={`/`}>
-            Go Back
-          </Link>
+    <div className="page-wrapper catalogue-select-wrapper">
+      <div className="page-container catalogue-select-container">
+        <div className="title-row">
+          <h2>My Lists</h2>
+          <p>All lists saved on this device</p>
         </div>
-        <CreateCatalogueButton />
+        <CatalogueSelectItems catalogues={results.data.myCatalogues} />
       </div>
-      {results.data &&
-        results.data.myCatalogues.map((e: CatalogueStub) => (
-          <CatalogueRow key={e.id} {...e} />
-        ))}
     </div>
   );
 };

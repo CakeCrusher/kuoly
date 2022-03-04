@@ -1,0 +1,61 @@
+.catalogue-banner-container {
+  width: 100%;
+  height: auto;
+
+  .toggle-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+
+    .toggle-input {
+      position: absolute;
+    }
+    .image-wrapper {
+      width: 100%;
+      height: calc(100% - 0.5rem);
+      z-index: 1;
+
+      &.toggle-input {
+        position: static;
+      }
+
+      img {
+        object-fit: contain;
+        width: 100%;
+      }
+    }
+
+  }
+
+  .icons-container {
+    z-index: 2;
+    color: red;
+    top: 0;
+    right: 0;
+    display: flex;
+
+  }
+}
+
+@media screen {
+  // sm
+  @media (min-width: 576px) {
+  }
+
+  // md
+  @media (min-width: 768px) {
+  }
+
+  // lg
+  @media (min-width: 992px) {
+  }
+
+  // xl
+  @media (min-width: 1200px) {
+  }
+
+  // xxl
+  @media (min-width: 1400px) {
+  }
+}

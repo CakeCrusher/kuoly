@@ -1,0 +1,49 @@
+type Query {
+  getJwt: String!
+  catalogues(id: ID, edit_id: String): [Catalogue!]
+  myCatalogues: [Catalogue!]
+  getMetrics(user_id: String, type: String): [Metric!]
+  getFeedback: [Feedback!]
+}
+
+type Mutation {
+  createCatalogue: Catalogue!
+  deleteCatalogue(id: ID!): Catalogue!
+  incrementCatalogueViews(id: ID, edit_id: String): Catalogue!
+  editCatalogue(id: ID!, key: String!, value: String!): Catalogue!
+  editCatalogueFile(id: ID!, key: String!, file: Upload!): Catalogue!
+  singleUpload(file: Upload!): File!
+
+  createLabel(catalogue_id: String!, name: String!): Label!
+  deleteLabel(id: ID!): Label!
+  reorderLabel(id: ID!, ordering: Float!): Label!
+
+  createListing(catalogue_id: ID!, name: String!): Listing!
+  deleteListing(id: ID!): Listing!
+  editListing(id: ID!, key: String!, value: String!): Listing!
+  editListingFile(id: ID!, file: Upload!): Listing!
+  reorderListing(id: ID!, ordering: Float!): Listing!
+
+  createLink(listing_id: ID!, url: String!): Link!
+  deleteLink(id: ID!): Link!
+  editLink(id: ID!, key: String!, value: String!): Link!
+
+  createListingLabel(listing_id: ID!, label_id: ID!): ListingLabel!
+  deleteListingLabel(id: ID!): ListingLabel!
+
+  createMetric(
+    type: String!
+    user_id: String
+    operation_name: String
+    operation_type: String
+    operation_variables: String
+    navigate_to: String
+    click_on: String
+  ): Metric!
+  createFeedback(message: String!, email: String): Feedback!
+  catalogueMacro(catalogue: CatalogueInput!): String!
+}
+
+type Subscription {
+  liveCatalogue(id: ID, edit_id: String): Catalogue!
+}

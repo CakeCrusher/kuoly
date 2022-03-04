@@ -1,0 +1,33 @@
+.label {
+  height: 2rem;
+  display: flex;
+  background-color: #f2f2f2;
+  border: 1px solid #9f9f9f;
+  color: black;
+  padding: 2px 8px;
+  border-radius: 100px;
+  user-select: none;
+
+  .delete-label {
+    display: none;
+  }
+
+  &.show-delete {
+    .delete-label {
+      background-color: #494949;
+      color: black;
+      line-height: 8px;
+      margin: 0 0 0 8px;
+      height: 20px;
+      width: 20px;
+      padding: 4px;
+      display: block;
+      border: none;
+      border-radius: 100px;
+    }
+  }
+
+  &.faint {
+    opacity: 0.5;
+  }
+}
