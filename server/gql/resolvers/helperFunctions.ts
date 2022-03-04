@@ -1,6 +1,6 @@
 import db from "../../db";
 import { QueryResult } from "pg";
-import { Catalogue, Link, Listing, ScrapedFeatures } from "types";
+import { Catalogue, Link, Listing, ScrapedFeatures } from "../../types";
 import {
   endOrdering,
   extractDomain,

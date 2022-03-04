@@ -30,6 +30,10 @@ export const handleFile = async (
   // creates the file locally, runs the callback, then deletes the file
   try {
     const { createReadStream, filename, mimetype, encoding } = await file;
+    // check for folder "../images"
+    if (!fs.existsSync(path.join(__dirname, "../images"))) {
+      fs.mkdirSync(path.join(__dirname, "../images"));
+    }
     const pathToFile = path.join(__dirname, "../images/", filename);
 
     const stream = createReadStream();

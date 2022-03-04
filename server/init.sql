@@ -1,3 +1,4 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 DROP TABLE IF EXISTS listing_labels;
 DROP TABLE IF EXISTS labels;
 DROP TABLE IF EXISTS links;
@@ -242,4 +243,4 @@ INSERT INTO listing_labels (
   '103498aa-7c47-4c7c-ac10-7c01a4dfc3ce',
   '51692a78-c744-4f8e-a2c5-d4a422fc657d',
   '261a378d-97d7-46fa-a5c2-83c99e4fa7b6'
-)
+);

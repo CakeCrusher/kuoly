@@ -1,12 +1,9 @@
 import { Client } from "pg";
 import fs from "fs";
-console.log("starting", process.env.DATABASE_URL);
 const db = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+  ssl: false
+}); 
 
 if (process.env.NODE_ENV !== "production") {
   var queries = fs

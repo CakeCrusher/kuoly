@@ -113,6 +113,7 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
 
   const editCatalogueFile = (file: File | undefined, objectKey: string) => {
     if (file) {
+      console.log("file", id, objectKey, file)
       editCatalogueFileMutation({
         variables: {
           id: id,
