@@ -1,7 +1,7 @@
 const Cloud = require("@google-cloud/storage");
 
 const { Storage } = Cloud;
-
+console.log("!private key", process.env.GC_PRIVATE_KEY.replace(/\\n/gm, '\n'))
 const storage = new Storage({
   projectId: process.env.GC_PROJECT_ID,
   credentials: {
