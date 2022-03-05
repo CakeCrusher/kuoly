@@ -13,7 +13,7 @@ const storageCredentials = {
   auth_provider_x509_cert_url: process.env.GC_AUTH_CERT,
   client_x509_cert_url: process.env.GC_CLIENT_CERT,
 }
-console.log("!creds", process.env.GC_PRIVATE_KEY.replace(/\\n/gm, '\n'))
+console.log("!creds", storageCredentials)
 const storage = new Storage({
   projectId: process.env.GC_PROJECT_ID,
   credentials: storageCredentials,
