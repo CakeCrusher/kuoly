@@ -1,21 +1,22 @@
 const Cloud = require("@google-cloud/storage");
 
 const { Storage } = Cloud;
-console.log("!private key", process.env.GC_PRIVATE_KEY.replace(/\\n/gm, '\n'))
+const storageCredentials = {
+  type: process.env.GC_TYPE,
+  project_id: process.env.GC_PROJECT_ID,
+  private_key_id: process.env.GC_PRIVATE_KEY_ID,
+  private_key: process.env.GC_PRIVATE_KEY.replace(/\\n/gm, '\n'),
+  client_email: process.env.GC_CLIENT_EMAIL,
+  client_id: process.env.GC_CLIENT_ID,
+  auth_uri: process.env.GC_AUTH_URI,
+  token_uri: process.env.GC_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.GC_AUTH_CERT,
+  client_x509_cert_url: process.env.GC_CLIENT_CERT,
+}
+console.log("!creds", process.env.GC_PRIVATE_KEY.replace(/\\n/gm, '\n'))
 const storage = new Storage({
   projectId: process.env.GC_PROJECT_ID,
-  credentials: {
-    type: process.env.GC_TYPE,
-    project_id: process.env.GC_PROJECT_ID,
-    private_key_id: process.env.GC_PRIVATE_KEY_ID,
-    private_key: process.env.GC_PRIVATE_KEY.replace(/\\n/gm, '\n'),
-    client_email: process.env.GC_CLIENT_EMAIL,
-    client_id: process.env.GC_CLIENT_ID,
-    auth_uri: process.env.GC_AUTH_URI,
-    token_uri: process.env.GC_TOKEN_URI,
-    auth_provider_x509_cert_url: process.env.GC_AUTH_CERT,
-    client_x509_cert_url: process.env.GC_CLIENT_CERT,
-  },
+  credentials: storageCredentials,
 });
 const bucket = storage.bucket(process.env.GC_BUCKET_ID);
 

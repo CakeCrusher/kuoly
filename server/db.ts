@@ -4,6 +4,7 @@ import fs from "fs";
 const sslVar = process.env.NODE_ENV === "development" ? false : {
   rejectUnauthorized: false,
 }
+console.log("sslVar", sslVar)
 const db = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: sslVar,
@@ -11,7 +12,7 @@ const db = new Client({
 
 if (process.env.NODE_ENV !== "production") {
   var queries = fs
-    .readFileSync("init.sql")
+    .readFileSync(__dirname + "/init.sql")
     .toString()
     .replace(/(\r\n|\n|\r)/gm, " ") // remove newlines
     .replace(/\s+/g, " ") // excess white space
