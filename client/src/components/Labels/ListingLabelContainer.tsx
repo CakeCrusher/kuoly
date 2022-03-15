@@ -22,13 +22,15 @@ const ListingLabelContainer: React.FC<Props> = ({
     : listing.labels && listing.labels.map((la: ListingLabel) => la.label);
   const handleListingClick = (label: Label) => {
     // if labelId is in listing.labels.id, remove it
-    const listingLabelWithId: ListingLabel | undefined = listing.labels?.find(
-      (l: ListingLabel) => l.label.id === label.id
-    );
-    if (listingLabelWithId) {
-      removeListingLabel(listingLabelWithId.id);
-    } else {
-      addListingLabel(listing.id, label);
+    if (isEditing) {
+      const listingLabelWithId: ListingLabel | undefined = listing.labels?.find(
+        (l: ListingLabel) => l.label.id === label.id
+      );
+      if (listingLabelWithId) {
+        removeListingLabel(listingLabelWithId.id);
+      } else {
+        addListingLabel(listing.id, label);
+      }
     }
   };
 
