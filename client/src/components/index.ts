@@ -31,3 +31,5 @@ export { default as LinksContainer } from "./Links/LinksContainer";
 export { default as Feedback } from "./Feedback/Feedback";
 
 export { default as IconButton } from "./IconButton/IconButton";
+
+export { default as ListingsFilter } from "./ListingsFilter/ListingsFilter";

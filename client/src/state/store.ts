@@ -39,3 +39,19 @@ export const useRemoveMFD = (): Remove => {
   };
   return { removeMFD, setRemoveMFD };
 };
+
+const listingsFilterVar: ReactiveVar<ListingsFilter> = makeVar<ListingsFilter>({
+  type: "custom",
+  labelIds: [],
+})
+type Filter = {
+  listingsFilter: ListingsFilter;
+  setListingsFilter: (value: ListingsFilter) => void;
+}
+export const useListingsFilter = (): Filter => {
+  const listingsFilter = useReactiveVar(listingsFilterVar)
+  const setListingsFilter = (value: ListingsFilter) => {
+    listingsFilterVar(value)
+  }
+  return { listingsFilter, setListingsFilter }
+}

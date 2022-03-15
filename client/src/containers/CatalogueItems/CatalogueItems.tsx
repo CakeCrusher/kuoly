@@ -7,6 +7,7 @@ import {
   AddListing,
   DragAndDrop,
   Draggable,
+  ListingsFilter,
 } from "../../components";
 import useListingApolloHooks from "../../graphql/hooks/listing";
 import useLabelApolloHooks from "../../graphql/hooks/label";
@@ -42,7 +43,7 @@ const CatalogueItems: React.FC<Props> = ({
           <AddListing handleSubmit={createListing(catalogue.id)} />
         </div>
         <div className="sort-wrapper">
-          <div className="col-md-6 col-sm-12">Sort</div>
+          <ListingsFilter />
         </div>
       </div>
       {/* labels */}
