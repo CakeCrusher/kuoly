@@ -296,3 +296,39 @@ export const handleCopy = (path: string): void => {
   const domain = currentUrl.split("/").slice(0, 3).join("/");
   navigator.clipboard.writeText(domain + path);
 };
+
+export const filteredListings = (listings: Listing[], listingsFilter: ListingsFilter): Listing[] => {
+  let newListings = [...listings];
+  if (listingsFilter.labelIds.length) {
+    newListings = newListings.filter((listing: Listing) => {
+      if (!listing.labels) return false;
+      return listing.labels.some((listingLabel: ListingLabel) => {
+        return listingsFilter.labelIds.includes(listingLabel.label.id);
+      });
+    });
+  }
+  switch (listingsFilter.type) {
+    case "date":
+      return newListings.sort((a: Listing, b: Listing) => {
+        const aDate = new Date(a.created);
+        const bDate = new Date(b.created);
+        // most recent first
+        return bDate.getTime() - aDate.getTime();
+      });
+    case "price":
+      return newListings.sort((a: Listing, b: Listing) => {
+        if (!a.price) return 1;
+        if (!b.price) return -1;
+        return b.price - a.price;
+      })
+    case "name":
+      return newListings.sort((a: Listing, b: Listing) => {
+        if (b.name === null) return -1;
+        if (a.name === null) return 1;
+        if (a.name > b.name) return 1;
+        return -1
+      })
+    default:
+      return newListings;
+  }
+}

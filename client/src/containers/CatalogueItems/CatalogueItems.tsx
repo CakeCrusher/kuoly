@@ -14,6 +14,7 @@ import useLabelApolloHooks from "../../graphql/hooks/label";
 
 import "./CatalogueItems.less";
 import { useListingsFilter } from "../../state/store";
+import { filteredListings } from "../../utils/functions";
 
 type Props = {
   isEditing: boolean;
@@ -57,6 +58,8 @@ const CatalogueItems: React.FC<Props> = ({
     }
   };
 
+  const organizedListings = isEditing ? listings : filteredListings(listings, listingsFilter)
+
   return (
     <div className="catalogue-items-container">
       {/* add item, sort */}
@@ -94,7 +97,7 @@ const CatalogueItems: React.FC<Props> = ({
             disabled={!isEditing}
             handleReorder={reorderListing(catalogue.id)}
           >
-            {listings.map((e: Listing) => (
+            {organizedListings.map((e: Listing) => (
               <Draggable key={e.id} refData={e}>
                 <ListingCard
                   listing={e}
