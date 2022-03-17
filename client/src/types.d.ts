@@ -135,3 +135,15 @@ interface Metric {
   navigate_to?: string;
   click_on?: string;
 }
+
+declare enum ListingFilterType {
+  CUSTOM = "custom",
+  DATE = "date",
+  NAME = "name",
+  PRICE = "price",
+
+}
+type ListingsFilter = {
+  type: string;
+  labelIds: string[];
+};

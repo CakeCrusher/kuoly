@@ -27,9 +27,7 @@ const Label: React.FC<LabelProps> = ({
     }
   };
   const handleClick = () => {
-    if (isEditing && onClick) {
-      onClick();
-    }
+    if (onClick) onClick()
   };
 
   return (
