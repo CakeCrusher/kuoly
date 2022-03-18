@@ -1,5 +1,4 @@
 import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import React from "react";
 import { IconButton } from "..";
 
@@ -68,10 +67,6 @@ const Label: React.FC<LabelProps> = ({
         src={X}
         onClick={handleDeleteClick}
       />
-      {/* <button className="delete-label" onClick={handleDeleteClick}>
-        <img src={X} alt="delete-label" />
-      </button>
-        */}
     </div>
   );
 };

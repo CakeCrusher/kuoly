@@ -10,7 +10,6 @@ import { useMarkedForDeletion, useRemoveMFD } from "./state/store";
 import { cache } from "./graphql/clientConfig";
 import { CatalogueToolbar } from "./containers";
 import { DependentCacheItems, MarkedForDeletion } from "./types";
-import DnD from "./DnD/DnD";
 
 const App = () => {
   const { removeMFD, setRemoveMFD } = useRemoveMFD();
@@ -46,8 +45,6 @@ const App = () => {
       setRemoveMFD(null);
     }
   }, [removeMFD, setRemoveMFD, markedForDeletion, setMarkedForDeletion]);
-
-  // return <DnD />;
 
   return (
     <div className="app">

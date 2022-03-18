@@ -1,16 +1,11 @@
 import React from "react";
 import {
   LabelContainer,
-  Label,
-  ListingCard,
   ListingCardsContainer,
   AddListing,
-  DragAndDrop,
-  Draggable,
   ListingsFilter,
 } from "../../components";
 import useListingApolloHooks from "../../graphql/hooks/listing";
-// import useLabelApolloHooks from "../../graphql/hooks/label";
 
 import "./CatalogueItems.less";
 import { useListingsFilter } from "../../state/store";
@@ -32,7 +27,7 @@ const CatalogueItems: React.FC<Props> = ({
   handleSelectListing,
 }) => {
   const { createListing } = useListingApolloHooks();
-  const { listingsFilter, setListingsFilter } = useListingsFilter();
+  const { listingsFilter } = useListingsFilter();
 
   const organizedListings = isEditing
     ? listings
@@ -64,23 +59,6 @@ const CatalogueItems: React.FC<Props> = ({
           listings={organizedListings}
           handleSelectListing={handleSelectListing}
         />
-        {/* <ListingCardsContainer>
-          <DragAndDrop
-            disabled={!isEditing}
-            handleReorder={reorderListing(catalogue.id)}
-          >
-            {organizedListings.map((e: Listing) => (
-              <Draggable key={e.id} refData={e}>
-                <ListingCard
-                  listing={e}
-                  isEditing={isEditing}
-                  selectListing={handleSelectListing}
-                  deleteListing={deleteListing}
-                />
-              </Draggable>
-            ))}
-          </DragAndDrop>
-        </ListingCardsContainer> */}
       </div>
     </div>
   );

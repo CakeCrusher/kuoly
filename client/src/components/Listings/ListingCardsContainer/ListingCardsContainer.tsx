@@ -34,7 +34,6 @@ const ListingCardsContainer: React.FC<Props> = ({
   listings,
   handleSelectListing,
 }) => {
-  const [isAdding, setIsAdding] = useState(false);
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [listingIds, setListingIds] = useState<string[]>(
     listings.map((listing) => listing.id)
@@ -109,14 +108,6 @@ const ListingCardsContainer: React.FC<Props> = ({
                 deleteListing={deleteListing}
                 hide={listing.id === draggingId}
               />
-              // <Draggable key={e.id} refData={e}>
-              //   <ListingCard
-              //     listing={e}
-              //     isEditing={isEditing}
-              //     selectListing={handleSelectListing}
-              //     deleteListing={deleteListing}
-              //   />
-              // </Draggable>
             ))}
           </SortableContext>
           <DragOverlay>

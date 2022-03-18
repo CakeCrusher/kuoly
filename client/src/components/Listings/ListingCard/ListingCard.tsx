@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IconButton, Label, LabelContainer } from "../..";
+import { IconButton, Label } from "../..";
 import { cleanedPath } from "../../../utils/functions";
 
 import { DragHorizontal, X } from "../../../assets";
