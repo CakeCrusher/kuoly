@@ -41,7 +41,6 @@ const Label: React.FC<LabelProps> = ({
   const handleClick = () => {
     if (onClick) onClick();
   };
-  console.log(transform);
   const style = {
     transform: transform
       ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
