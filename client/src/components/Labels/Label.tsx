@@ -1,3 +1,4 @@
+import { useSortable } from "@dnd-kit/sortable";
 import React from "react";
 import { IconButton } from "..";
 
@@ -12,6 +13,7 @@ type LabelProps = {
   deleteLabel?: (id: string) => void;
   onClick?: () => void;
   className?: string;
+  hide?: boolean;
 };
 
 const Label: React.FC<LabelProps> = ({
@@ -20,14 +22,30 @@ const Label: React.FC<LabelProps> = ({
   deleteLabel,
   label,
   onClick,
+  hide,
 }) => {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: label.id,
+      transition: {
+        duration: 150,
+        easing: "ease-in-out",
+      },
+      disabled: !isEditing,
+    });
   const handleDeleteClick = () => {
     if (deleteLabel) {
       deleteLabel(label.id);
     }
   };
   const handleClick = () => {
-    if (onClick) onClick()
+    if (onClick) onClick();
+  };
+  const style = {
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : "",
+    transition,
   };
 
   return (
@@ -35,7 +53,11 @@ const Label: React.FC<LabelProps> = ({
       onClick={handleClick}
       className={`label f-center ${
         isEditing && deleteLabel ? "show-delete" : ""
-      } ${faint && "faint"}`}
+      } ${hide ? "hide" : faint && "faint"}`}
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      style={style}
     >
       <span>{label.name}</span>
 
@@ -44,10 +66,6 @@ const Label: React.FC<LabelProps> = ({
         src={X}
         onClick={handleDeleteClick}
       />
-      {/* <button className="delete-label" onClick={handleDeleteClick}>
-        <img src={X} alt="delete-label" />
-      </button>
-        */}
     </div>
   );
 };

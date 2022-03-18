@@ -9,7 +9,6 @@ import "./App.less";
 import { useMarkedForDeletion, useRemoveMFD } from "./state/store";
 import { cache } from "./graphql/clientConfig";
 import { CatalogueToolbar } from "./containers";
-import { DependentCacheItems, MarkedForDeletion } from "./types";
 
 const App = () => {
   const { removeMFD, setRemoveMFD } = useRemoveMFD();

@@ -297,7 +297,10 @@ export const handleCopy = (path: string): void => {
   navigator.clipboard.writeText(domain + path);
 };
 
-export const filteredListings = (listings: Listing[], listingsFilter: ListingsFilter): Listing[] => {
+export const filteredListings = (
+  listings: Listing[],
+  listingsFilter: ListingsFilter
+): Listing[] => {
   let newListings = [...listings];
   if (listingsFilter.labelIds.length) {
     newListings = newListings.filter((listing: Listing) => {
@@ -320,15 +323,38 @@ export const filteredListings = (listings: Listing[], listingsFilter: ListingsFi
         if (!a.price) return 1;
         if (!b.price) return -1;
         return b.price - a.price;
-      })
+      });
     case "name":
       return newListings.sort((a: Listing, b: Listing) => {
         if (b.name === null) return -1;
         if (a.name === null) return 1;
         if (a.name > b.name) return 1;
-        return -1
-      })
+        return -1;
+      });
     default:
       return newListings;
   }
-}
+};
+
+export const newOrdering = (items: any, id: string, overId: string): number => {
+  const sortedItems = [...items].sort(
+    (a: any, b: any) => a.ordering - b.ordering
+  );
+  const indexOfId = sortedItems.findIndex((item: any) => item.id === id);
+  const indexOfOverId = sortedItems.findIndex(
+    (item: any) => item.id === overId
+  );
+  const newItems = sortedItems.filter((item: any) => item.id !== id);
+  newItems.splice(indexOfOverId, 0, sortedItems[indexOfId]);
+  const nextItem = newItems[indexOfOverId + 1];
+  const previousItem = newItems[indexOfOverId - 1];
+  if (nextItem && previousItem) {
+    return (nextItem.ordering + previousItem.ordering) / 2;
+  } else if (nextItem) {
+    return nextItem.ordering - 1;
+  } else if (previousItem) {
+    return previousItem.ordering + 1;
+  } else {
+    return 0;
+  }
+};

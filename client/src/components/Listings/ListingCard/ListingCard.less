@@ -2,6 +2,10 @@
   user-select: none;
   height: 100%;
 
+  &.hide {
+    opacity: 0;
+  }
+
   &.editing {
     .card-header {
       display: block;
@@ -15,7 +19,7 @@
     height: 1rem;
     text-align: center;
 
-    >img {
+    > img {
       transform: translateY(-40%);
       height: 100%;
     }
@@ -29,7 +33,7 @@
       width: 36px;
       position: absolute;
       top: -1.625rem;
-      right: -1.625rem
+      right: -1.625rem;
     }
   }
 
@@ -54,7 +58,7 @@
       }
 
       p {
-        font-size: .75rem;
+        font-size: 0.75rem;
       }
     }
 
@@ -70,7 +74,7 @@
         border-radius: 10px;
         width: calc(50% - 4px);
 
-        &.length-1{
+        &.length-1 {
           &:first-of-type {
             border-radius: 10px 0 0 10px;
           }
@@ -79,7 +83,7 @@
             border-radius: 0 10px 10px 0;
           }
         }
-        &.length-2{
+        &.length-2 {
           &:first-of-type {
             border-radius: 10px 0 0 10px;
           }
@@ -87,14 +91,14 @@
           &:nth-of-type(2) {
             border-radius: 0 10px 10px 0;
           }
-          
+
           &:last-of-type {
             border-radius: 10px;
           }
         }
         &.length-3,
         &.length-5,
-        &.length-6{
+        &.length-6 {
           &:first-of-type {
             border-radius: 10px 0 0 0;
           }
@@ -108,7 +112,7 @@
             border-radius: 0 0 10px 0;
           }
         }
-        &.length-4{
+        &.length-4 {
           &:first-of-type {
             border-radius: 10px 0 0 0;
           }

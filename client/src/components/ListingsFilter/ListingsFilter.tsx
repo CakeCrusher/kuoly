@@ -1,10 +1,12 @@
 import React from "react";
 import { useListingsFilter } from "../../state/store";
-import {Dropdown} from "../../components";
-import { listingsFilterOptions, listingsFilterTitles } from "../../utils/references";
+import { Dropdown } from "../../components";
+import {
+  listingsFilterOptions,
+  listingsFilterTitles,
+} from "../../utils/references";
 const ListingsFilter: React.FC = () => {
-  const {listingsFilter, setListingsFilter} = useListingsFilter()
-  console.log(listingsFilter)
+  const { listingsFilter, setListingsFilter } = useListingsFilter();
   return (
     <div className="f-row">
       <div className="f-row">
@@ -13,14 +15,16 @@ const ListingsFilter: React.FC = () => {
       </div>
       <Dropdown
         value={listingsFilter.type}
-        handleSubmit={(value) => setListingsFilter({type: value, labelIds: listingsFilter.labelIds})}
+        handleSubmit={(value) =>
+          setListingsFilter({ type: value, labelIds: listingsFilter.labelIds })
+        }
         fieldEditingProps={{
           key: "listingsFilterType",
           typename: "Catalogue",
           id: "",
         }}
       >
-        <Dropdown.Toggle/>
+        <Dropdown.Toggle />
         <Dropdown.Menu>
           {listingsFilterOptions
             .filter((option) => option !== listingsFilter.type)
@@ -33,12 +37,11 @@ const ListingsFilter: React.FC = () => {
               >
                 {option}
               </Dropdown.Item>
-            ))
-          }
+            ))}
         </Dropdown.Menu>
       </Dropdown>
     </div>
-  )
-}
+  );
+};
 
-export default ListingsFilter
+export default ListingsFilter;
