@@ -7,13 +7,13 @@ export const statusTitles: any = {
   collaborative: "Visible to everyone, editable with editor link",
 };
 
-export const listingsFilterOptions = ["custom", "date", "name", "price"]
+export const listingsFilterOptions = ["custom", "date", "name", "price"];
 export const listingsFilterTitles: any = {
-  custom: "Creator's order",
+  custom: "Editor's order",
   date: "Most recent",
   name: "Alphabetical",
   price: "Highest price",
-}
+};
 
 export const acceptedImageFiles = ["image/jpeg", "image/png"];
 

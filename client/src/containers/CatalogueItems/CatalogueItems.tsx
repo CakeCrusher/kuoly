@@ -10,7 +10,7 @@ import {
   ListingsFilter,
 } from "../../components";
 import useListingApolloHooks from "../../graphql/hooks/listing";
-import useLabelApolloHooks from "../../graphql/hooks/label";
+// import useLabelApolloHooks from "../../graphql/hooks/label";
 
 import "./CatalogueItems.less";
 import { useListingsFilter } from "../../state/store";
@@ -31,8 +31,7 @@ const CatalogueItems: React.FC<Props> = ({
   isEditing,
   handleSelectListing,
 }) => {
-  const { createListing, deleteListing, reorderListing } =
-    useListingApolloHooks();
+  const { createListing } = useListingApolloHooks();
   const { listingsFilter, setListingsFilter } = useListingsFilter();
 
   const organizedListings = isEditing
@@ -58,8 +57,14 @@ const CatalogueItems: React.FC<Props> = ({
           labels={labels}
         />
       </div>
-      {/* <div className="listing-cards-container-wrapper">
-        <ListingCardsContainer>
+      <div className="listing-cards-container-wrapper">
+        <ListingCardsContainer
+          isEditing={isEditing}
+          catalogue={catalogue}
+          listings={organizedListings}
+          handleSelectListing={handleSelectListing}
+        />
+        {/* <ListingCardsContainer>
           <DragAndDrop
             disabled={!isEditing}
             handleReorder={reorderListing(catalogue.id)}
@@ -75,8 +80,8 @@ const CatalogueItems: React.FC<Props> = ({
               </Draggable>
             ))}
           </DragAndDrop>
-        </ListingCardsContainer>
-      </div> */}
+        </ListingCardsContainer> */}
+      </div>
     </div>
   );
 };

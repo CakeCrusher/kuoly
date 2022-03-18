@@ -6,12 +6,14 @@ import { cleanedPath } from "../../../utils/functions";
 import { DragHorizontal, X } from "../../../assets";
 
 import "./ListingCard.less";
+import { useSortable } from "@dnd-kit/sortable";
 
 type Props = {
   isEditing: boolean;
   listing: Listing;
   selectListing: (listingId: string) => void;
   deleteListing: (id: string) => void;
+  hide?: boolean;
 };
 
 const ListingCard: React.FC<Props> = ({
@@ -19,12 +21,22 @@ const ListingCard: React.FC<Props> = ({
   listing,
   selectListing,
   deleteListing,
+  hide,
 }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const handleDelete = () => {
     deleteListing(listing.id);
   };
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({
+      id: listing.id,
+      transition: {
+        duration: 150,
+        easing: "ease-in-out",
+      },
+      disabled: !isEditing,
+    });
 
   const handleSelect = () => {
     let urlToNavigate: string = cleanedPath(location.pathname);
@@ -38,14 +50,27 @@ const ListingCard: React.FC<Props> = ({
     selectListing(listing.id);
   };
 
+  const style = {
+    transform: transform
+      ? `translate3d(${transform.x}px, ${transform.y}px, 0)`
+      : "",
+    transition,
+  };
+
   return (
     <div
       onClick={handleSelect}
-      className={`card ${isEditing ? "editing" : ""} listing-card`}
+      className={`card ${isEditing ? "editing" : ""} listing-card ${
+        hide && "hide"
+      }`}
+      ref={setNodeRef}
+      style={style}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         className="card-header text-center"
+        {...listeners}
+        {...attributes}
       >
         <img src={DragHorizontal} alt="drag" />
         <IconButton onClick={handleDelete} src={X} />
@@ -67,12 +92,12 @@ const ListingCard: React.FC<Props> = ({
         </div>
 
         <div className="listing-labels">
-          <LabelContainer>
-            {listing.labels &&
-              listing.labels.map((e: ListingLabel) => {
-                return <Label key={e.id} label={e.label} />;
-              })}
-          </LabelContainer>
+          {/* <LabelContainer> */}
+          {listing.labels &&
+            listing.labels.map((e: ListingLabel) => {
+              return <Label key={e.id} label={e.label} />;
+            })}
+          {/* </LabelContainer> */}
         </div>
 
         <div className="listing-price">

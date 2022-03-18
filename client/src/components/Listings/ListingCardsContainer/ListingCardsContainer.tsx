@@ -1,13 +1,136 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ListingCard from "../ListingCard/ListingCard";
+import useListingApolloHooks from "../../../graphql/hooks/listing";
 
 import "./ListingCardsContainer.less";
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  rectSortingStrategy,
+  SortableContext,
+} from "@dnd-kit/sortable";
+import { newOrdering } from "../../../utils/functions";
 
-type Props = {};
+type Props = {
+  isEditing: boolean;
+  catalogue: CatalogueType;
+  listings: Listing[];
+  handleSelectListing: (listingId: string) => void;
+};
 
-const ListingCardsContainer: React.FC<Props> = ({ children }) => {
+const ListingCardsContainer: React.FC<Props> = ({
+  isEditing,
+  catalogue,
+  listings,
+  handleSelectListing,
+}) => {
+  const [isAdding, setIsAdding] = useState(false);
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [listingIds, setListingIds] = useState<string[]>(
+    listings.map((listing) => listing.id)
+  );
+  const { deleteListing, reorderListing } = useListingApolloHooks();
+
+  const listingDragging: Listing = listings.find(
+    (listing) => listing.id === draggingId
+  )!;
+
+  useEffect(() => {
+    setListingIds(listings.map((listing) => listing.id));
+  }, [listings]);
+
+  const sensors = useSensors(
+    useSensor(MouseSensor, {
+      activationConstraint: {
+        delay: 100,
+        tolerance: 100,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 250,
+        tolerance: 5,
+      },
+    })
+  );
+
+  const handleDragStart = (event: DragStartEvent) => {
+    setDraggingId(event.active.id);
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    if (event.over && event.active.id !== event.over.id) {
+      // reorder the dnd state
+      setListingIds((items) => {
+        const oldIndex = items.indexOf(event.active.id);
+        const newIndex = items.indexOf(event.over!.id);
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+      // update db
+      reorderListing(catalogue.id)(
+        event.active.id,
+        newOrdering(listings, event.active.id, event.over.id)
+      );
+    }
+    setDraggingId(null);
+  };
+
+  const listingsFromIds = listingIds
+    .map((listingId) => listings.find((listing) => listing.id === listingId)!)
+    .filter((listing) => listing !== undefined);
+
   return (
     <div className="listing-cards-container-wrapper">
-      <div className="listing-cards-container">{children}</div>
+      <div className="listing-cards-container">
+        <DndContext
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          sensors={sensors}
+          collisionDetection={closestCenter}
+        >
+          <SortableContext items={listingIds} strategy={rectSortingStrategy}>
+            {listingsFromIds.map((listing: Listing) => (
+              <ListingCard
+                key={listing.id}
+                listing={listing}
+                isEditing={isEditing}
+                selectListing={handleSelectListing}
+                deleteListing={deleteListing}
+                hide={listing.id === draggingId}
+              />
+              // <Draggable key={e.id} refData={e}>
+              //   <ListingCard
+              //     listing={e}
+              //     isEditing={isEditing}
+              //     selectListing={handleSelectListing}
+              //     deleteListing={deleteListing}
+              //   />
+              // </Draggable>
+            ))}
+          </SortableContext>
+          <DragOverlay>
+            {draggingId && (
+              <ListingCard
+                listing={listingDragging}
+                isEditing={isEditing}
+                selectListing={handleSelectListing}
+                deleteListing={deleteListing}
+              />
+            )}
+          </DragOverlay>
+        </DndContext>
+      </div>
     </div>
   );
 };
