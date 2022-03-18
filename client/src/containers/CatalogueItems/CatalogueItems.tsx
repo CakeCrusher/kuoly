@@ -33,32 +33,11 @@ const CatalogueItems: React.FC<Props> = ({
 }) => {
   const { createListing, deleteListing, reorderListing } =
     useListingApolloHooks();
-  const { createLabel, deleteLabel, reorderLabel } = useLabelApolloHooks({
-    catalogue_id: catalogue.id,
-  });
-  const {listingsFilter, setListingsFilter} = useListingsFilter()
-  const toggleListingFilter = (listingId: string) => {
-    if (!isEditing) {
-      // if listingsFilter.labelIds includes listingId, remove it
-      if (listingsFilter.labelIds.includes(listingId)) {
-        setListingsFilter({
-          ...listingsFilter,
-          labelIds: listingsFilter.labelIds.filter(
-            (labelId) => labelId !== listingId
-          ),
-        });
-      }
-      // if not, add it
-      else {
-        setListingsFilter({
-          ...listingsFilter,
-          labelIds: [...listingsFilter.labelIds, listingId],
-        });
-      }
-    }
-  };
+  const { listingsFilter, setListingsFilter } = useListingsFilter();
 
-  const organizedListings = isEditing ? listings : filteredListings(listings, listingsFilter)
+  const organizedListings = isEditing
+    ? listings
+    : filteredListings(listings, listingsFilter);
 
   return (
     <div className="catalogue-items-container">
@@ -73,25 +52,13 @@ const CatalogueItems: React.FC<Props> = ({
       </div>
       {/* labels */}
       <div className="labels-container-wrapper">
-        <LabelContainer createLabel={createLabel} isEditing={isEditing}>
-          <DragAndDrop disabled={!isEditing} handleReorder={reorderLabel}>
-            {labels.map((e: Label) => (
-              <Draggable key={e.id} refData={e}>
-                <Label
-                  key={e.id}
-                  className={`label ${isEditing ? "can-delete" : ""}`}
-                  label={e}
-                  isEditing={isEditing}
-                  onClick={() => toggleListingFilter(e.id)}
-                  faint={!isEditing && !listingsFilter.labelIds.includes(e.id)}
-                  deleteLabel={(id) => deleteLabel(id, catalogue)}
-                />
-              </Draggable>
-            ))}
-          </DragAndDrop>
-        </LabelContainer>
+        <LabelContainer
+          isEditing={isEditing}
+          catalogue={catalogue}
+          labels={labels}
+        />
       </div>
-      <div className="listing-cards-container-wrapper">
+      {/* <div className="listing-cards-container-wrapper">
         <ListingCardsContainer>
           <DragAndDrop
             disabled={!isEditing}
@@ -109,7 +76,7 @@ const CatalogueItems: React.FC<Props> = ({
             ))}
           </DragAndDrop>
         </ListingCardsContainer>
-      </div>
+      </div> */}
     </div>
   );
 };

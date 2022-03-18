@@ -65,7 +65,7 @@ const useLabelApolloHooks: LabelHook.FC = ({ catalogue_id }) => {
       setRemoveMFD,
       markedForDeletion,
       setMarkedForDeletion,
-      catalogue,
+      catalogue
     );
   };
 

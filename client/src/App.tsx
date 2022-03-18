@@ -47,7 +47,7 @@ const App = () => {
     }
   }, [removeMFD, setRemoveMFD, markedForDeletion, setMarkedForDeletion]);
 
-  return <DnD />;
+  // return <DnD />;
 
   return (
     <div className="app">
