@@ -46,7 +46,6 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
   const { listingsFilter, setListingsFilter } = useListingsFilter();
 
   useEffect(() => {
-    console.log("labelIds", labelIds);
     setLabelIds(labels.map((label) => label.id));
   }, [labels]);
 
