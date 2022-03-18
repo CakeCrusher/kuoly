@@ -9,6 +9,7 @@ import "./App.less";
 import { useMarkedForDeletion, useRemoveMFD } from "./state/store";
 import { cache } from "./graphql/clientConfig";
 import { CatalogueToolbar } from "./containers";
+import { Layout } from "./Layout";
 
 const App = () => {
   const { removeMFD, setRemoveMFD } = useRemoveMFD();
@@ -47,14 +48,16 @@ const App = () => {
 
   return (
     <div className="app">
-      <Router>
-        <CatalogueToolbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/catalogues" element={<CatalogueSelect />} />
-          <Route path="/ctg/:corresponding_id/*" element={<Catalogue />} />
-        </Routes>
-      </Router>
+      <Layout>
+        <Router>
+          <CatalogueToolbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalogues" element={<CatalogueSelect />} />
+            <Route path="/ctg/:corresponding_id/*" element={<Catalogue />} />
+          </Routes>
+        </Router>
+      </Layout>
     </div>
   );
 };

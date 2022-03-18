@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { BannerLogo } from "../../assets";
 import { CreateCatalogueButton } from "../../components";
 import { client } from "../../graphql/clientConfig";
 import { MY_CATALOGUES } from "../../graphql/schemas";
@@ -57,7 +58,7 @@ const Home = () => {
           </div>
         </div>
         <div className="image-container">
-          <img src="#" alt="IMAGE" />
+          <img src={BannerLogo} alt="banner-kuoly" />
         </div>
       </section>
 
