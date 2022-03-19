@@ -28,7 +28,11 @@ interface CatalogueStub {
   author: string | null;
 }
 
-type ListingStub = any;
+type ListingStub = {
+  id: string;
+  image_url: string;
+  ordering: number;
+};
 
 interface CatalogueType extends CatalogueStub {
   views: number;
@@ -141,7 +145,6 @@ declare enum ListingFilterType {
   DATE = "date",
   NAME = "name",
   PRICE = "price",
-
 }
 type ListingsFilter = {
   type: string;

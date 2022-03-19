@@ -18,6 +18,12 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
     handleCopy(`/ctg/${catalogue.id}`);
   };
 
+  console.log("catalogue", catalogue);
+  let sortedListings = catalogue.listings ? [...catalogue.listings] : null;
+  if (sortedListings) {
+    sortedListings.sort((a, b) => a.ordering - b.ordering);
+  }
+
   return (
     <div className="card f-col catalogue-card">
       {/*TODO: need to somehow maintain aspect ratio of 6:1*/}
@@ -33,22 +39,29 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
       </div>
       <div className="f-col card-body">
         <div className="f-row avatar-title-author">
-          <div className="avatar-image-wrapper">
-            <img src={catalogue.profile_picture_url || ""} />
-          </div>
+          <img
+            className="profile-image"
+            src={catalogue.profile_picture_url || "#"}
+          />
           <div className="f-col title-author">
-            <p>{catalogue.author}</p>
-            <h5>{catalogue.title}</h5>
+            <p className="author">{catalogue.author}</p>
+            <h5 className="title">{catalogue.title}</h5>
           </div>
         </div>
         <div className="description-row">
           <p>{catalogue.description}</p>
         </div>
         <div className="f-row images-row">
-          {catalogue.listings &&
-            catalogue.listings.slice(0, 3).map((e: ListingStub) => (
-              <div key={e.id}>
-                <img src={"https://via.placeholder.com/800"} alt="" />
+          {sortedListings &&
+            sortedListings.slice(0, 3).map((ls) => (
+              <div key={ls.id}>
+                <img
+                  src={
+                    ls.image_url ||
+                    "https://storage.googleapis.com/givespace-pictures/Logo%20Placeholder%202.png"
+                  }
+                  alt=""
+                />
               </div>
             ))}
         </div>

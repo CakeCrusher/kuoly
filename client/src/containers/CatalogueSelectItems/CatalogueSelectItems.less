@@ -1,20 +1,18 @@
+@import "../../App.less";
+
 .catalogue-cards-container {
   flex-wrap: wrap;
-
-  >* {
-    width: 45%;
-    margin-right: 10%;
-    margin-bottom: 1.5rem;
-  }
-
-  >*:nth-child(2n) {
-    width: 45%;
-    margin-right: 0;
-  }
+  column-gap: 2rem;
+  row-gap: 2rem;
 
   .catalogue-card-wrapper {
-    height: 21rem;
+    height: 22rem;
     display: flex;
+    width: 20rem;
+
+    .add-icon {
+      color: #pallette[sec];
+    }
 
     .add-catalogue {
       justify-content: center !important;
@@ -26,53 +24,5 @@
         height: auto !important;
       }
     }
-
-  }
-}
-
-@media screen {
-  // sm
-  @media (min-width: 576px) {
-  }
-
-  // md
-  @media (min-width: 768px) {
-    .catalogue-cards-container {
-      >*:nth-child(2n),
-      >* {
-        width: 30%;
-        margin-right: 4.999%;
-      }
-
-      >*:nth-child(3n) {
-        width: 30%;
-        margin-right: 0;
-      }
-    }
-  }
-
-  // lg
-  @media (min-width: 992px) {
-  }
-
-  // xl
-  @media (min-width: 1200px) {
-    .catalogue-cards-container {
-      >*:nth-child(2n),
-      >*:nth-child(3n),
-      >* {
-        width: 22.5%;
-        margin-right: 3.333%;
-      }
-
-      >*:nth-child(4n) {
-        width: 22.5%;
-        margin-right: 0;
-      }
-    }
-  }
-
-  // xxl
-  @media (min-width: 1400px) {
   }
 }
