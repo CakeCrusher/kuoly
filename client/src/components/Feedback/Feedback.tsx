@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Modal } from "..";
 import useUtilsHooks from "../../graphql/hooks/utils";
 
+import "./feedback.less";
+import { FiSend } from "react-icons/fi";
+
 const Feedback: React.FC = () => {
   const [show, setShow] = useState(false);
   const [followUp, setFollowUp] = useState(false);
@@ -78,7 +81,10 @@ const Feedback: React.FC = () => {
           </>
         )}
       </Modal>
-      <button onClick={onFeedbackClick}>Feedback</button>
+      <button className="feedback-btn" onClick={onFeedbackClick}>
+        <FiSend />
+        <div>Send Feedback</div>
+      </button>
     </div>
   );
 };

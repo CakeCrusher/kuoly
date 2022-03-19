@@ -1,0 +1,58 @@
+@import "../App.less";
+
+.layoutContainer {
+  width: 100%;
+  overflow: hidden;
+
+  .false-nav {
+    height: 5rem;
+  }
+  #navbar {
+    display: flex;
+    width: 100vw;
+    position: fixed;
+    flex-direction: row;
+    height: 5rem;
+    color: #pallette[pri];
+    background-color: #pallette[blank];
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #1c1c1c11;
+
+    .logo {
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      .icon {
+        width: 2.5rem;
+        margin-right: 1rem;
+      }
+      .secondary-text {
+        color: #pallette[dark];
+      }
+    }
+    .routes {
+      display: flex;
+      column-gap: 2rem;
+      font-size: 1rem;
+    }
+  }
+  #footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 3rem 0.625rem;
+    row-gap: 2rem;
+
+    width: 100%;
+    background-color: #pallette[pri];
+    color: #pallette[blank];
+
+    .footer-text {
+      font-size: #fonts[md];
+    }
+  }
+}
