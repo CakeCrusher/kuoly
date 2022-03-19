@@ -1,7 +1,34 @@
+#fonts() {
+  md: 1.125rem;
+}
+
+#pallette() {
+  pri: #c9042c;
+  blank: #fdfdfd;
+  sec: #d95f78;
+  light: #fc839c;
+  darkred: #66071a;
+  neg: #ff4242;
+  pos: #0a78a7;
+  dark: #1c1c1c;
+}
+
+html {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.42857143;
+  color: #pallette[dark];
+  background-color: #fff;
+  @media (max-width: 500px) {
+    font-size: 16px;
+  }
+}
+
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-size: large;
 }
 
 .page-wrapper {
@@ -26,14 +53,11 @@
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  padding: 0.625rem;
-  font-size: 1.125rem;
+  padding: 0.725rem;
+  font-size: #fonts[md];
   transition: border-color @time-1, background-color @time-1, color @time-1;
   background-color: white;
   color: black;
-}
-
-.btn {
   &:hover {
     background-color: #dfdfdf;
     cursor: pointer;
@@ -83,7 +107,6 @@
     color: @secondary700;
   }
 }
-
 
 @media screen {
   // sm
