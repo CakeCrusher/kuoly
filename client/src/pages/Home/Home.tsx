@@ -14,32 +14,7 @@ const Home = () => {
   const cachedData = client.readQuery({
     query: MY_CATALOGUES,
   });
-  console.log("cachedData", cachedData);
 
-  const ButtonToShow = () => {
-    switch (true) {
-      case cachedData === null:
-        return (
-          <div className="btn btn-primary" style={{ opacity: 0 }}>
-            Invisible
-          </div>
-        );
-      case cachedData.myCatalogues.length > 0:
-        return (
-          <Link className="btn btn-secondary-outline" to={`/catalogues`}>
-            Go to Lists
-          </Link>
-        );
-      case cachedData.myCatalogues.length === 0:
-        return <CreateCatalogueButton />;
-      default:
-        return (
-          <div className="btn btn-primary" style={{ opacity: 0 }}>
-            Invisible
-          </div>
-        );
-    }
-  };
   const ButtonsToShow = () => {
     return (
       <div className="btn-container">
@@ -81,9 +56,7 @@ const Home = () => {
             className="video"
             src="https://www.youtube.com/embed/Ym6DU9Nzh1s"
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
           ></iframe>
         </div>
         <div className="steps">

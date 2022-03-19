@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Feedback } from "../components";
+import { CreateCatalogueButton, Feedback } from "../components";
 import "./layout.less";
 
 const Layout: React.FC = ({ children }) => {
@@ -18,8 +18,9 @@ const Layout: React.FC = ({ children }) => {
           </div>
         </Link>
         <div className="routes">
-          <Link to={`/`}>My Lists</Link>
-          <Link to={`/`}>Make a List</Link>
+          <Link to="/catalogues">My Catalogues</Link>
+          <CreateCatalogueButton simpleText={true} />
+          {/* <Link to={`/`}>Crea</Link> */}
         </div>
       </div>
       <div className="false-nav" />

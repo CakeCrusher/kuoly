@@ -8,7 +8,6 @@ import { apolloHookErrorHandler } from "./utils/functions";
 import "./App.less";
 import { useMarkedForDeletion, useRemoveMFD } from "./state/store";
 import { cache } from "./graphql/clientConfig";
-import { CatalogueToolbar } from "./containers";
 import { Layout } from "./Layout";
 
 const App = () => {

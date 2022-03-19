@@ -7,9 +7,13 @@ import { apolloHookErrorHandler } from "../../utils/functions";
 
 type Props = {
   className?: string;
+  simpleText?: boolean;
 };
 
-const CreateCatalogueButton = ({ className }: Props): React.ReactElement => {
+const CreateCatalogueButton = ({
+  className,
+  simpleText,
+}: Props): React.ReactElement => {
   const [createCatalogue, { loading, data, error }] =
     useMutation(CREATE_CATALOGUE);
   apolloHookErrorHandler("CreateCatalogueButton.tsx", error);
@@ -29,6 +33,14 @@ const CreateCatalogueButton = ({ className }: Props): React.ReactElement => {
   const handleClick = async () => {
     createCatalogue();
   };
+
+  if (simpleText) {
+    return (
+      <div onClick={handleClick} className={className}>
+        Create Catalogue
+      </div>
+    );
+  }
 
   return (
     <button onClick={handleClick} className={`btn ${className}`}>
