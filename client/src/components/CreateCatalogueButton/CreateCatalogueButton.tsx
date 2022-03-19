@@ -5,7 +5,15 @@ import { cache } from "../../graphql/clientConfig";
 import { CREATE_CATALOGUE, MY_CATALOGUES } from "../../graphql/schemas";
 import { apolloHookErrorHandler } from "../../utils/functions";
 
-const CreateCatalogueButton = (): React.ReactElement => {
+type Props = {
+  className?: string;
+  simpleText?: boolean;
+};
+
+const CreateCatalogueButton = ({
+  className,
+  simpleText,
+}: Props): React.ReactElement => {
   const [createCatalogue, { loading, data, error }] =
     useMutation(CREATE_CATALOGUE);
   apolloHookErrorHandler("CreateCatalogueButton.tsx", error);
@@ -26,9 +34,17 @@ const CreateCatalogueButton = (): React.ReactElement => {
     createCatalogue();
   };
 
+  if (simpleText) {
+    return (
+      <div onClick={handleClick} className={className}>
+        Create Catalogue
+      </div>
+    );
+  }
+
   return (
-    <button onClick={handleClick} className="btn btn-success">
-      New Catalogue
+    <button onClick={handleClick} className={`btn ${className}`}>
+      Create Catalogue
     </button>
   );
 };

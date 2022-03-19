@@ -13,6 +13,9 @@
   dark: #1c1c1c;
 }
 
+@laptop: (max-width: 1200px);
+@mobile: (max-width: 500px);
+
 html {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
@@ -58,8 +61,19 @@ html {
   transition: border-color @time-1, background-color @time-1, color @time-1;
   background-color: white;
   color: black;
+  border: 2px solid #pallette[blank];
   &:hover {
     background-color: #dfdfdf;
+    cursor: pointer;
+  }
+}
+
+.btn-outline {
+  border: 2px solid #pallette[blank];
+  color: #pallette[blank];
+  background-color: #pallette[pri];
+  &:hover {
+    background-color: #a9042c;
     cursor: pointer;
   }
 }
@@ -86,7 +100,8 @@ html {
 }
 
 .btn-secondary {
-  background-color: @secondary500;
+  background-color: #pallette[sec];
+  border: 2px solid #pallette[sec];
   color: white;
 
   &:hover {
@@ -95,11 +110,12 @@ html {
 }
 
 .btn-secondary-outline {
-  @bg-color: white;
-  @bd-color: @secondary500;
-  border: 3px solid @secondary500;
-  background-color: white;
-  color: @secondary500;
+  border: 2px solid #pallette[sec];
+  background-color: #pallette[blank];
+  display: flex;
+  color: #pallette[blank];
+  width: auto;
+  column-gap: 10px;
 
   &:hover {
     background-color: #f2f2f2;
