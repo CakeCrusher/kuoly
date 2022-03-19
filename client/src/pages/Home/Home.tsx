@@ -6,6 +6,8 @@ import { client } from "../../graphql/clientConfig";
 import { MY_CATALOGUES } from "../../graphql/schemas";
 
 import "./Home.less";
+import { FiEdit, FiShare2 } from "react-icons/fi";
+import { BiPalette } from "react-icons/bi";
 
 const Home = () => {
   // need some way to get user id here
@@ -38,31 +40,86 @@ const Home = () => {
         );
     }
   };
+  const ButtonsToShow = () => {
+    return (
+      <div className="btn-container">
+        <CreateCatalogueButton className="create" />
+        {cachedData && cachedData.myCatalogues.length && (
+          <Link className="btn btn-outline" to={`/catalogues`}>
+            My Catalogues
+          </Link>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="home-page-container">
       <section className="welcome-section">
         <div className="text-container">
-          <h3 className="title">Welcome to GiveSpace</h3>
-          <p>
-            Some type of slogan or hook will be written here. Your lists made
-            easy, or something
-          </p>
-          <div className="f-row">
-            <div className="btn-wrapper">
-              <ButtonToShow />
-            </div>
-            <div className="btn-wrapper">
-              <ButtonToShow />
-            </div>
+          <div className="texts">
+            <h3 className="title">Welcome to Kuoly</h3>
+            <p>
+              Some type of slogan or hook will be written here. Your lists made
+              easy, or something
+            </p>
           </div>
+          <div className="spacer" />
         </div>
-        <div className="image-container">
-          <img src={BannerLogo} alt="banner-kuoly" />
+        <div className="btn-logo-container">
+          <ButtonsToShow />
+          <div className="logo-container">
+            <img className="logo" src={BannerLogo} alt="banner-kuoly" />
+          </div>
         </div>
       </section>
 
-      <section className="description-section"></section>
+      <section className="description-section">
+        <div className="video-container">
+          <div className="description">How it Works</div>
+          <iframe
+            className="video"
+            src="https://www.youtube.com/embed/Ym6DU9Nzh1s"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <div className="steps">
+          <div className="step">
+            <FiEdit className="icon" size="3rem" />
+            <h5 className="title">Create</h5>
+            <div>
+              Effortlessly create a list by searching for products or directly
+              pasting links—we fill in the details.
+            </div>
+          </div>
+          <div className="spacer" />
+          <div className="step">
+            <BiPalette className="icon" size="3rem" />
+            <h5 className="title">Customize</h5>
+            <div>
+              Add your own style with custom image, color, and font choices.
+            </div>
+          </div>
+          <div className="spacer" />
+          <div className="step">
+            <FiShare2 className="icon" size="3rem" />
+            <h5 className="title">Share</h5>
+            <div>
+              Send out your list! You can copy a link with editor access for
+              easy collaboration.
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="sendoff">
+        <div className="text">Get started, no sign-up required</div>
+        <div>
+          <CreateCatalogueButton className="btn-secondary" />
+        </div>
+      </section>
     </div>
   );
 };

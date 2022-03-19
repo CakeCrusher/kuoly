@@ -49,7 +49,6 @@ const App = () => {
     <div className="app">
       <Router>
         <Layout>
-          <CatalogueToolbar />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/catalogues" element={<CatalogueSelect />} />
