@@ -1,8 +1,7 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Plus } from "../../assets";
-import { CreateCatalogueButton, IconButton } from "../../components";
+import { CreateCatalogueButton } from "../../components";
 import CatalogueCard from "../../components/CatalogueCard/CatalogueCard";
 import { cache } from "../../graphql/clientConfig";
 import { CREATE_CATALOGUE, MY_CATALOGUES } from "../../graphql/schemas";

@@ -21,6 +21,8 @@ import {
 } from "../../utils/functions";
 import { useMarkedForDeletion } from "../../state/store";
 
+import "./Catalogue.less";
+
 const Catalogue: React.FC = () => {
   // get navigation params
   const navigate = useNavigate();
@@ -145,38 +147,40 @@ const Catalogue: React.FC = () => {
   const B = catalogue.header_color.slice(5, 7);
 
   return (
-    <div
-      style={{
-        flex: "1 0 auto",
-        backgroundColor: `rgba(
+    <div className="catalogue-container">
+      <div
+        style={{
+          flex: "1 0 auto",
+          backgroundColor: `rgba(
           ${parseInt(R, 16)},
           ${parseInt(G, 16)},
           ${parseInt(B, 16)},
           0.35)`,
-      }}
-    >
-      <div className="page-wrapper">
-        <CatalogueHeader
-          isEditing={isEditing}
-          editable={editable}
-          catalogue={catalogue}
-          toggleEdit={() => setIsEditing((prev) => !prev)}
-        />
-        <UndoNotification />
-        <CatalogueItems
-          catalogue={catalogue}
-          isEditing={isEditing}
-          labels={sortedLabels}
-          listings={sortedListings}
-          handleSelectListing={handleSelectListing}
-        />
-        <ListingModal
-          isEditing={isEditing}
-          labels={sortedLabels}
-          listingId={selectedListingId}
-          listing={selectedListing}
-          handleClose={handleListingModalClose}
-        />
+        }}
+      >
+        <div className="page-wrapper">
+          <CatalogueHeader
+            isEditing={isEditing}
+            editable={editable}
+            catalogue={catalogue}
+            toggleEdit={() => setIsEditing((prev) => !prev)}
+          />
+          <UndoNotification />
+          <CatalogueItems
+            catalogue={catalogue}
+            isEditing={isEditing}
+            labels={sortedLabels}
+            listings={sortedListings}
+            handleSelectListing={handleSelectListing}
+          />
+          <ListingModal
+            isEditing={isEditing}
+            labels={sortedLabels}
+            listingId={selectedListingId}
+            listing={selectedListing}
+            handleClose={handleListingModalClose}
+          />
+        </div>
       </div>
     </div>
   );

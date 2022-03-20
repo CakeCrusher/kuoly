@@ -2,6 +2,7 @@ import React from "react";
 import { DeleteCatalogueButton } from "..";
 import { Share2 } from "../../assets";
 import { handleCopy } from "../../utils/functions";
+import ReactTooltip from "react-tooltip";
 
 import "./CatalogueCard.less";
 
@@ -14,11 +15,9 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
     // This card will likely be wrapped in a link
     // preventDefault will stop navigation
     evt.preventDefault();
-    console.log("share", evt);
     handleCopy(`/ctg/${catalogue.id}`);
   };
 
-  console.log("catalogue", catalogue);
   let sortedListings = catalogue.listings ? [...catalogue.listings] : null;
   if (sortedListings) {
     sortedListings.sort((a, b) => a.ordering - b.ordering);
@@ -67,12 +66,20 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
         </div>
         <div className="f-row options-row">
           <DeleteCatalogueButton id={catalogue.id} />
-          <button className="btn f-row option" onClick={handleShareClick}>
+          <button
+            data-tip
+            data-for="share"
+            className="btn f-row option"
+            onClick={handleShareClick}
+          >
             <div>
               <img src={Share2} alt="share" />
             </div>
             <div className="fs-1">Share</div>
           </button>
+          <ReactTooltip id="share" place="top" effect="solid">
+            Copy catalogue link
+          </ReactTooltip>
         </div>
       </div>
     </div>

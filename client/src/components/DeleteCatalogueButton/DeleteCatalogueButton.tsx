@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
+import { FiTrash2 } from "react-icons/fi";
 import { Modal } from "..";
 import { Trash2 } from "../../assets";
 import { DELTETE_CATALOGUE } from "../../graphql/schemas";
@@ -7,6 +8,8 @@ import {
   apolloHookErrorHandler,
   handleCacheDeletion,
 } from "../../utils/functions";
+
+import "./DeleteCatalogueButton.less";
 
 const DeleteCatalogueButton: React.FC<{
   id: string;
@@ -41,12 +44,21 @@ const DeleteCatalogueButton: React.FC<{
         <div className="fs-1"> Delete</div>
       </button>
       <Modal show={showModal} close={handleClose}>
-        <Modal.Header>
-          Are you sure you want to delete this catalogue?
-        </Modal.Header>
+        <Modal.Header close={handleClose}> </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this catalogue?</Modal.Body>
         <Modal.Footer>
-          <button onClick={handleClose}>cancel</button>
-          <button onClick={handleDelete}>delete</button>
+          <div className="g-row options-container">
+            <button className="btn btn-secondary-outline" onClick={handleClose}>
+              Cancel
+            </button>
+            <button
+              className="f-row btn btn-delete delete-container"
+              onClick={handleDelete}
+            >
+              <FiTrash2 className="icon" />
+              <div>Delete</div>
+            </button>
+          </div>
         </Modal.Footer>
       </Modal>
     </div>
