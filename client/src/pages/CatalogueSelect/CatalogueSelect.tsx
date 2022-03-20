@@ -20,14 +20,12 @@ const CatalogueSelect = () => {
   }
 
   return (
-    <div className="page-wrapper catalogue-select-wrapper">
-      <div className="page-container catalogue-select-container">
-        <div className="title-row">
-          <h2>My Lists</h2>
-          <p>All lists saved on this device</p>
-        </div>
-        <CatalogueSelectItems catalogues={results.data.myCatalogues} />
+    <div className="page-container catalogue-select-container">
+      <div className="title-row">
+        <h2>My Catalogues</h2>
+        <p>All lists saved on this device</p>
       </div>
+      <CatalogueSelectItems catalogues={results.data.myCatalogues} />
     </div>
   );
 };

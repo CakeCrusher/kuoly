@@ -8,11 +8,12 @@ import { apolloHookErrorHandler } from "../../utils/functions";
 type Props = {
   className?: string;
   simpleText?: boolean;
+  children?: React.ReactNode;
 };
 
 const CreateCatalogueButton = ({
   className,
-  simpleText,
+  children,
 }: Props): React.ReactElement => {
   const [createCatalogue, { loading, data, error }] =
     useMutation(CREATE_CATALOGUE);
@@ -34,10 +35,10 @@ const CreateCatalogueButton = ({
     createCatalogue();
   };
 
-  if (simpleText) {
+  if (children) {
     return (
       <div onClick={handleClick} className={className}>
-        Create Catalogue
+        {children}
       </div>
     );
   }

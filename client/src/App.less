@@ -3,6 +3,7 @@
 }
 
 #pallette() {
+  bg: #dfdfdf;
   pri: #c9042c;
   blank: #fdfdfd;
   sec: #d95f78;
@@ -113,7 +114,7 @@ html {
   border: 2px solid #pallette[sec];
   background-color: #pallette[blank];
   display: flex;
-  color: #pallette[blank];
+  color: #pallette[sec];
   width: auto;
   column-gap: 10px;
 
@@ -121,6 +122,19 @@ html {
     background-color: #f2f2f2;
     border-color: @secondary700;
     color: @secondary700;
+  }
+}
+
+.btn-delete {
+  border: 2px solid #pallette[neg];
+  background-color: #pallette[neg];
+  display: flex;
+  color: #pallette[blank];
+  width: auto;
+  column-gap: 10px;
+
+  &:hover {
+    background-color: #dd4242;
   }
 }
 
@@ -264,6 +278,12 @@ html {
 .f-col {
   display: flex;
   flex-direction: column;
+}
+
+.g-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
 }
 
 .card {

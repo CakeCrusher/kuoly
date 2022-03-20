@@ -1,14 +1,14 @@
 import { useMutation } from "@apollo/client";
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Plus } from "../../assets";
-import { IconButton } from "../../components";
+import { CreateCatalogueButton } from "../../components";
 import CatalogueCard from "../../components/CatalogueCard/CatalogueCard";
 import { cache } from "../../graphql/clientConfig";
 import { CREATE_CATALOGUE, MY_CATALOGUES } from "../../graphql/schemas";
 import { apolloHookErrorHandler } from "../../utils/functions";
 
 import "./CatalogueSelectItems.less";
+import { FiPlus } from "react-icons/fi";
 
 type Props = {
   catalogues: CatalogueStub[];
@@ -40,18 +40,14 @@ const CatalogueCards: React.FC<Props> = ({ catalogues }) => {
           <CatalogueCard catalogue={catalogue} />
         </Link>
       ))}
-      <div className="catalogue-card-wrapper">
+      <CreateCatalogueButton className="catalogue-card-wrapper">
         <div className="card f-col catalogue-card add-catalogue">
           <div className="f-col card-body">
-            <div className="fs-1-625">Add List</div>
-            <IconButton
-              className="btn-primary"
-              src={Plus}
-              onClick={createCatalogue}
-            />
+            <div className="text">Create a Catalogue</div>
+            <FiPlus className="add-icon" size="3rem" />
           </div>
         </div>
-      </div>
+      </CreateCatalogueButton>
     </div>
   );
 };

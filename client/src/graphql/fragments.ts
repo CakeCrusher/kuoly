@@ -30,6 +30,7 @@ export const CATALOGUE_LIST_ITEM_FIELDS = gql`
     listings {
       id
       image_url
+      ordering
     }
   }
 `;

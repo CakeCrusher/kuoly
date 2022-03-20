@@ -33,7 +33,7 @@ CREATE TABLE listings (
   link_url TEXT,
   image_url TEXT,
   description TEXT,
-  ordering FLOAT NOT NULL,
+  ordering FLOAT NOT NULL DEFAULT 0,
   show_price BOOLEAN DEFAULT true,
   price NUMERIC,
   created TIMESTAMP DEFAULT NOW(),
@@ -107,17 +107,20 @@ INSERT INTO catalogues (
   id,
   edit_id,
   user_id,
-  title
+  title,
+  description,
+  author,
+  profile_picture_url,
+  header_image_url
 ) VALUES (
   'f470498b-71ff-470a-8c61-1fc4101449dd',
   'bfb04418-6c9f-42c7-a97f-2f9ce8cf3e07',
   '6a3a2967-0258-4caf-8fef-f844c060b2f2',
-  'title1'
-), (
-  'a970498b-71ff-470a-8c61-1fc4101449dd',
-  '38016b4c-2466-44ed-add4-f6ac506c23b5',
-  '6a3a2967-0258-4caf-8fef-f844c060b2f2',
-  'title2'
+  'title1',
+  'Join an Empire State Building ambassador for this historic tour of the world`s most famous skyscraper, plus you`ll bring home a limited edition 90th anniversary tote bag! Buy Tickets. Sunri',
+  'Sebastian',
+  'https://storage.googleapis.com/givespace-pictures/profile1647721041622.PNG',
+  'https://storage.googleapis.com/givespace-pictures/bootstrap-colors1647721021052.JPG'
 ); 
 
 INSERT INTO labels (

@@ -2,6 +2,7 @@ import React from "react";
 import { DeleteCatalogueButton } from "..";
 import { Share2 } from "../../assets";
 import { handleCopy } from "../../utils/functions";
+import ReactTooltip from "react-tooltip";
 
 import "./CatalogueCard.less";
 
@@ -14,9 +15,13 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
     // This card will likely be wrapped in a link
     // preventDefault will stop navigation
     evt.preventDefault();
-    console.log("share", evt);
     handleCopy(`/ctg/${catalogue.id}`);
   };
+
+  let sortedListings = catalogue.listings ? [...catalogue.listings] : null;
+  if (sortedListings) {
+    sortedListings.sort((a, b) => a.ordering - b.ordering);
+  }
 
   return (
     <div className="card f-col catalogue-card">
@@ -33,33 +38,48 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
       </div>
       <div className="f-col card-body">
         <div className="f-row avatar-title-author">
-          <div className="avatar-image-wrapper">
-            <img src={catalogue.profile_picture_url || ""} />
-          </div>
+          <img
+            className="profile-image"
+            src={catalogue.profile_picture_url || "#"}
+          />
           <div className="f-col title-author">
-            <p>{catalogue.author}</p>
-            <h5>{catalogue.title}</h5>
+            <p className="author">{catalogue.author}</p>
+            <h5 className="title">{catalogue.title}</h5>
           </div>
         </div>
         <div className="description-row">
           <p>{catalogue.description}</p>
         </div>
         <div className="f-row images-row">
-          {catalogue.listings &&
-            catalogue.listings.slice(0, 3).map((e: ListingStub) => (
-              <div key={e.id}>
-                <img src={"https://via.placeholder.com/800"} alt="" />
+          {sortedListings &&
+            sortedListings.slice(0, 3).map((ls) => (
+              <div key={ls.id}>
+                <img
+                  src={
+                    ls.image_url ||
+                    "https://storage.googleapis.com/givespace-pictures/Logo%20Placeholder%202.png"
+                  }
+                  alt=""
+                />
               </div>
             ))}
         </div>
         <div className="f-row options-row">
           <DeleteCatalogueButton id={catalogue.id} />
-          <button className="btn f-row option" onClick={handleShareClick}>
+          <button
+            data-tip
+            data-for="share"
+            className="btn f-row option"
+            onClick={handleShareClick}
+          >
             <div>
               <img src={Share2} alt="share" />
             </div>
             <div className="fs-1">Share</div>
           </button>
+          <ReactTooltip id="share" place="top" effect="solid">
+            Copy catalogue link
+          </ReactTooltip>
         </div>
       </div>
     </div>

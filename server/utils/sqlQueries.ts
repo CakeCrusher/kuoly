@@ -92,7 +92,8 @@ export const myCataloguesQuery = (whereString?: string | null) => {
     (
       SELECT json_agg(json_build_object(
         'id', li.id,
-        'image_url', li.image_url
+        'image_url', li.image_url,
+        'ordering', li.ordering
       )) AS listings
       FROM listings li WHERE li.catalogue_id = c.id
     )         

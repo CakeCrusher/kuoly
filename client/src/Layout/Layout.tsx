@@ -19,8 +19,7 @@ const Layout: React.FC = ({ children }) => {
         </Link>
         <div className="routes">
           <Link to="/catalogues">My Catalogues</Link>
-          <CreateCatalogueButton simpleText={true} />
-          {/* <Link to={`/`}>Crea</Link> */}
+          <CreateCatalogueButton>Create Catalogue</CreateCatalogueButton>
         </div>
       </div>
       <div className="false-nav" />
