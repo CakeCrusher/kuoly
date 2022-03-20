@@ -33,10 +33,10 @@ const Home = () => {
       <section className="welcome-section">
         <div className="text-container">
           <div className="texts">
-            <h3 className="title">Welcome to Kuoly</h3>
+            <h3 className="title">Easy, custom, shareable product lists.</h3>
             <p>
-              Some type of slogan or hook will be written here. Your lists made
-              easy, or something
+              Your ultimate tool for creating product lists and catalogues. Get
+              started in seconds, no sign-up required.
             </p>
           </div>
           <div className="spacer" />
