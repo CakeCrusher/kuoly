@@ -22,6 +22,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
   if (sortedListings) {
     sortedListings.sort((a, b) => a.ordering - b.ordering);
   }
+  // 0.35 in hex
 
   return (
     <div className="card f-col catalogue-card">
@@ -55,6 +56,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
             sortedListings.slice(0, 3).map((ls) => (
               <div key={ls.id}>
                 <img
+                  // style={{ backgroundColor: `${catalogue.header_color}66` }}
                   src={
                     ls.image_url ||
                     "https://storage.googleapis.com/givespace-pictures/Logo%20Placeholder%202.png"

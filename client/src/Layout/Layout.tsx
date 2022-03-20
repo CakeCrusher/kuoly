@@ -27,7 +27,9 @@ const Layout: React.FC = ({ children }) => {
       <div id="footer">
         <div className="footer-text">
           Got questions or comments? Contact us at{" "}
-          <strong>contact@kuoly.com</strong>
+          <a href="mailto:contact@kuoly.com">
+            <strong className="contact">contact@kuoly.com</strong>
+          </a>
         </div>
         <Feedback />
       </div>

@@ -1,8 +1,12 @@
 @import "../../App.less";
 
 .catalogue-select-container {
-  padding: 1rem 2rem;
+  padding: 1rem 6rem;
   background-color: #pallette[bg];
+
+  @media @mobile {
+    padding: 1rem 2rem;
+  }
 
   .title-row {
     > * {

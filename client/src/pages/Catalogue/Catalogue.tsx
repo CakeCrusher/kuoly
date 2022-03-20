@@ -142,20 +142,12 @@ const Catalogue: React.FC = () => {
       ? catalogue.listings.find((li: Listing) => li.id === selectedListingId)!
       : null;
 
-  const R = catalogue.header_color.slice(1, 3);
-  const G = catalogue.header_color.slice(3, 5);
-  const B = catalogue.header_color.slice(5, 7);
-
   return (
     <div className="catalogue-container">
       <div
         style={{
           flex: "1 0 auto",
-          backgroundColor: `rgba(
-          ${parseInt(R, 16)},
-          ${parseInt(G, 16)},
-          ${parseInt(B, 16)},
-          0.35)`,
+          backgroundColor: `${catalogue.header_color}66`,
         }}
       >
         <div className="page-wrapper">
