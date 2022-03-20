@@ -57,7 +57,7 @@ html {
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  padding: 0.725rem;
+  padding: 0.625rem;
   font-size: #fonts[md];
   transition: border-color @time-1, background-color @time-1, color @time-1;
   background-color: white;
@@ -135,6 +135,44 @@ html {
 
   &:hover {
     background-color: #dd4242;
+  }
+}
+
+// make the color of a checked checkbox red
+.checkbox-checked {
+  color: #pallette[neg];
+}
+input {
+  &[type="checkbox"] {
+    height: 1rem;
+    width: 1rem;
+    &:checked {
+      accent-color: #pallette[sec];
+    }
+  }
+}
+.input-container-row {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.input-icon-container {
+  position: relative;
+  label {
+    position: absolute;
+    top: 0.05rem;
+    left: 0.25rem;
+    font-size: 1.5rem;
+    .icon {
+      color: #acacac;
+    }
+  }
+  input {
+    color: #3c3c3c;
+    padding: 0.4rem 0;
+    padding-left: 2rem;
+    font-size: 1rem;
   }
 }
 
