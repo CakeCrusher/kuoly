@@ -40,6 +40,7 @@ const CatalogueHeader: React.FC<Props> = ({
         <CatalogueBanner
           isEditing={isEditing}
           handleSubmit={editCatalogueFile}
+          handleDelete={editCatalogue}
           keyProp={"header_image_url"}
           value={catalogue.header_image_url || ""}
           catalogue={catalogue}
@@ -58,6 +59,7 @@ const CatalogueHeader: React.FC<Props> = ({
               <AvatarImage
                 isEditing={isEditing}
                 handleSubmit={editCatalogueFile}
+                handleDelete={editCatalogue}
                 keyProp={"profile_picture_url"}
                 value={catalogue.profile_picture_url || ""}
               />

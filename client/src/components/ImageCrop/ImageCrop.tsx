@@ -3,7 +3,7 @@ import RefManager from "./RefManager";
 
 import "./ImageCrop.less";
 
-import { ZoomIn, ZoomOut } from "../../assets";
+import { FiZoomIn, FiZoomOut } from "react-icons/fi";
 
 type Props = {};
 
@@ -28,17 +28,13 @@ const ImageCrop = React.forwardRef<ImageCrop.RefManager, Props>(
       >
         <canvas></canvas>
         <div className="zoom-container">
-          <div className="zoom-icon">
-            <img src={ZoomIn} />
-          </div>
+          <FiZoomOut size="1.2rem" className="zoom-icon" />
           <input type="range" defaultValue={0} max={1} step={0.005} />
-          <div className="zoom-icon">
-            <img src={ZoomOut} />
-          </div>
+          <FiZoomIn size="1.2rem" className="zoom-icon" />
         </div>
       </div>
     );
-  },
+  }
 );
 
 export default Object.assign(ImageCrop, { RefManager });

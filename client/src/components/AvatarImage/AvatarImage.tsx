@@ -6,15 +6,17 @@ import React, {
   useState,
 } from "react";
 
-import { IconButton, ImageCrop, Modal, ToggleEdit } from "..";
+import { IconButton, ImageCrop, Modal } from "..";
 import { acceptedImageFiles } from "../../utils/references";
 import { Camera } from "../../assets";
 
 import "./AvatarImage.less";
+import { FiTrash2, FiUpload } from "react-icons/fi";
 
 type Props = {
   isEditing: boolean;
   handleSubmit: CatalogueHook.editCatalogueFile;
+  handleDelete: CatalogueHook.editCatalogue;
   value: string;
   keyProp: string;
   className?: string;
@@ -23,6 +25,7 @@ type Props = {
 const AvatarImage: React.FC<Props> = ({
   isEditing,
   handleSubmit,
+  handleDelete,
   keyProp,
   value,
   className,
@@ -104,47 +107,74 @@ const AvatarImage: React.FC<Props> = ({
         }
       },
       "image/jpg", // file type
-      0.9, // image quality
+      0.9 // image quality
     );
+  };
+
+  const handleFileDelete = () => {
+    handleDelete("", keyProp);
   };
 
   return (
     <>
-      <ToggleEdit
+      <div
         className="avatar-image-container"
-        isEditing={isEditing}
-        style={{ display: value || isEditing ? "" : "none" }}
+        style={value || isEditing ? {} : { display: "none" }}
       >
         {/* open modal, display image */}
         {/* TODO: Replace Icon */}
         <div className="toggle-wrapper">
           <div className={`toggle-input icons-container f-center`}>
-            <IconButton onClick={handleModal} src={Camera} />
+            {isEditing && <IconButton onClick={handleModal} src={Camera} />}
           </div>
           <div className={`toggle-input image-wrapper`}>
             <img id="avatar-image-display" src={value} alt="" />
           </div>
-          <div className={`toggle-display image-wrapper`}>
+          <div
+            style={value ? {} : { borderWidth: "2px" }}
+            className={`toggle-display image-wrapper`}
+          >
             <img id="avatar-image-input" src={value} alt="" />
           </div>
         </div>
-      </ToggleEdit>
+      </div>
       {/* file selection, image cropping, submit */}
       <Modal show={showModal} close={handleModal}>
         <Modal.Header close={handleModal}>Edit Avatar Image</Modal.Header>
         <Modal.Body>
           {/* ImageCrop: pass ref to component */}
           <ImageCrop ref={cropRef} />
-          <input
-            ref={fileRef}
-            onChange={handleFileChange}
-            className={`toggle-input file-input ${className || ""}`}
-            type="file"
-            name={keyProp}
-          />
+          <div className="file-delete-row">
+            <div className="file-input">
+              <label
+                className="btn btn-secondary-outline file-label"
+                htmlFor={keyProp}
+              >
+                <FiUpload className="icon" />
+                <div>Upload</div>
+              </label>
+              <input
+                ref={fileRef}
+                onChange={handleFileChange}
+                className={`toggle-input file-input ${className || ""}`}
+                type="file"
+                name={keyProp}
+                id={keyProp}
+              />
+            </div>
+            <button
+              onClick={handleFileDelete}
+              className="btn btn-delete delete"
+            >
+              <FiTrash2 color="white" />
+            </button>
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-primary" onClick={handleClickSubmit}>
+          <button
+            className="btn btn-primary submit"
+            onClick={handleClickSubmit}
+          >
             Submit
           </button>
         </Modal.Footer>
