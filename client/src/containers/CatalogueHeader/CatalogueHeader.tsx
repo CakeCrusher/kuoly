@@ -1,5 +1,12 @@
 import React from "react";
-import { Edit2, Eye } from "../../assets";
+import {
+  FiBookmark,
+  FiCalendar,
+  FiEdit2,
+  FiEye,
+  FiShare2,
+} from "react-icons/fi";
+import ReactTooltip from "react-tooltip";
 import {
   TextInput,
   Dropdown,
@@ -7,7 +14,6 @@ import {
   AvatarImage,
   CalendarInput,
   TextareaInput,
-  IconButton,
 } from "../../components";
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import { handleCopy } from "../../utils/functions";
@@ -75,6 +81,7 @@ const CatalogueHeader: React.FC<Props> = ({
                 }}
                 value={catalogue.author || ""}
                 placeholder="Author"
+                className="author"
               />
               <TextInput
                 isEditing={isEditing}
@@ -84,27 +91,32 @@ const CatalogueHeader: React.FC<Props> = ({
                   key: "title",
                   id: catalogue.id,
                 }}
+                placeholder="Title"
                 value={catalogue.title || ""}
-                className="fs-2"
+                className="title"
               />
             </div>
           </div>
 
           {/* event_date, views, location */}
           <div className="f-row event-date-views-location">
-            <div className="views-wrapper">views: {catalogue.views}</div>
+            <div className="views-wrapper">{catalogue.views} views</div>
             <div className="event-date-wrapper">
+              {catalogue.event_date || isEditing ? (
+                <FiCalendar size="1rem" />
+              ) : null}
               <CalendarInput
                 isEditing={isEditing}
                 value={catalogue.event_date}
                 handleOnSubmit={(date: string) =>
                   editCatalogue(date, "event_date")
                 }
+                className="calendar"
               />
             </div>
           </div>
           {/* description */}
-          <div>
+          <div className="description-container">
             <TextareaInput
               isEditing={isEditing}
               handleSubmit={editCatalogue}
@@ -113,7 +125,9 @@ const CatalogueHeader: React.FC<Props> = ({
                 key: "description",
                 id: catalogue.id,
               }}
+              placeholder="Description"
               value={catalogue.description || ""}
+              className="description"
             />
           </div>
         </div>
@@ -124,37 +138,57 @@ const CatalogueHeader: React.FC<Props> = ({
           <div className="edit-copy-share">
             <div className="btn-wrapper">
               {editable && (
-                <IconButton
-                  className={`btn btn-primary edit-button`}
-                  src={isEditing ? Eye : Edit2}
-                  label={isEditing ? "Preview" : "Edit"}
-                  onClick={toggleEdit}
-                />
+                <>
+                  <button
+                    onClick={toggleEdit}
+                    className="btn-icon btn-secondary edit-btn"
+                  >
+                    {isEditing ? (
+                      <>
+                        <FiEdit2 />
+                        <div>Edit</div>
+                      </>
+                    ) : (
+                      <>
+                        <FiEye />
+                        <div>Preview</div>
+                      </>
+                    )}
+                  </button>
+                </>
               )}
             </div>
             {editable && (
-              <div className="btn-wrapper">
+              <div data-tip data-for="copy-edit" className="btn-wrapper">
                 <a
                   onClick={() =>
                     handleCopy(`/ctg/${catalogue.edit_id}?edit=true`)
                   }
-                  className="btn"
+                  className="btn-icon btn"
                 >
-                  Copy Editor Link
+                  <FiBookmark />
+                  <div>Editor Link</div>
                 </a>
+                <ReactTooltip id="copy-edit" place="top" effect="solid">
+                  Copy Editor Link
+                </ReactTooltip>
               </div>
             )}
-            <div className="btn-wrapper">
+            <div data-tip data-for="copy-share" className="btn-wrapper">
               <a
                 onClick={() => handleCopy(`/ctg/${catalogue.id}`)}
-                className="btn"
+                className="btn btn-icon"
               >
-                Share
+                <FiShare2 />
+                <div>Share</div>
               </a>
+              <ReactTooltip id="copy-share" place="top" effect="solid">
+                Copy Link
+              </ReactTooltip>
             </div>
           </div>
           <div className="dropdown-wrapper">
-            <span className="fs-1-125">This list is: </span>
+            <span className="status-label">This list is: </span>
             <Dropdown
               value={catalogue.status}
               handleSubmit={editCatalogue}
@@ -165,7 +199,7 @@ const CatalogueHeader: React.FC<Props> = ({
               }}
             >
               <Dropdown.Toggle
-                className="sudo-btn"
+                className={isEditing ? "sudo-btn" : "status-padding"}
                 disable={
                   !isEditing ||
                   catalogue.user_id !== localStorage.getItem("authorization")
@@ -182,7 +216,7 @@ const CatalogueHeader: React.FC<Props> = ({
                       key={option}
                       value={option}
                     >
-                      {option}
+                      {option.charAt(0).toUpperCase() + option.slice(1)}
                     </Dropdown.Item>
                   ))}
               </Dropdown.Menu>

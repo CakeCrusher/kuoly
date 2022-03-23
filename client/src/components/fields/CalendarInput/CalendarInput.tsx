@@ -6,12 +6,14 @@ type Props = {
   isEditing: boolean;
   value: string | undefined | null | Date;
   handleOnSubmit: (date: string) => void;
+  className: string;
 };
 
 const CalendarInput: React.FC<Props> = ({
   isEditing,
   value,
   handleOnSubmit,
+  className,
 }) => {
   // transform date to a valid format
   let date = useRef<HTMLInputElement>(null);
@@ -53,12 +55,16 @@ const CalendarInput: React.FC<Props> = ({
     <div className="calendar-input">
       <input
         ref={date}
-        className={`${isEditing ? "" : "hidden"}`}
+        className={`${isEditing ? "" : "hidden"} ${className || ""}`}
         type="date"
         onKeyPress={handleOnKeyPress}
         onBlur={handleOnBlur}
       />
-      <div className={`${isEditing || (!isEditing && !value) ? "hidden" : ""}`}>
+      <div
+        className={`${isEditing || (!isEditing && !value) ? "hidden" : ""} ${
+          className || ""
+        }`}
+      >
         {value ? valueToDisplay : "No date selected"}
       </div>
     </div>

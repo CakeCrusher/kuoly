@@ -115,7 +115,7 @@ const Feedback: React.FC = () => {
           </>
         )}
       </Modal>
-      <button className="feedback-btn" onClick={onFeedbackClick}>
+      <button className="btn-icon btn-white" onClick={onFeedbackClick}>
         <FiSend />
         <div>Send Feedback</div>
       </button>
