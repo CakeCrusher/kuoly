@@ -3,6 +3,7 @@
 }
 
 #pallette() {
+  silver: #f2f2f2;
   grey: #acacac;
   darkgrey: #7c7c7c;
   bg: #dfdfdf;
@@ -37,6 +38,19 @@ html {
   font-size: large;
 }
 
+.btn-circle {
+  border-radius: 10rem;
+  border: 1px solid #ffffff00;
+}
+.neg {
+  color: #pallette[neg];
+  border-color: #pallette[neg];
+}
+.pos {
+  color: #pallette[pos];
+  border-color: #pallette[pos];
+}
+
 .page-wrapper {
   width: 100%;
   margin: 0 auto;
@@ -59,7 +73,7 @@ html {
   align-items: center;
   width: 100%;
   border-radius: 10px;
-  padding: 0.625rem;
+  padding: 0.5rem;
   font-size: #fonts[md];
   transition: border-color @time-1, background-color @time-1, color @time-1;
   background-color: white;

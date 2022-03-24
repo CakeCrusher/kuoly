@@ -145,13 +145,13 @@ const CatalogueHeader: React.FC<Props> = ({
                   >
                     {isEditing ? (
                       <>
-                        <FiEdit2 />
-                        <div>Edit</div>
+                        <FiEye />
+                        <div>Preview</div>
                       </>
                     ) : (
                       <>
-                        <FiEye />
-                        <div>Preview</div>
+                        <FiEdit2 />
+                        <div>Edit</div>
                       </>
                     )}
                   </button>

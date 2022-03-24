@@ -1,13 +1,17 @@
 import React, { KeyboardEvent, useRef } from "react";
+import { FiChevronRight } from "react-icons/fi";
 
 import "./AddListing.less";
 
 type Props = {
   handleSubmit: (name: string) => void;
+  isEditing: boolean;
 };
 
-const AddListing: React.FC<Props> = ({ handleSubmit }) => {
+const AddListing: React.FC<Props> = ({ handleSubmit, isEditing }) => {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  if (!isEditing) return null;
 
   const handleClick = () => {
     if (inputRef.current) {
@@ -33,10 +37,15 @@ const AddListing: React.FC<Props> = ({ handleSubmit }) => {
     <div className="add-listing-container">
       <label>Add Item:</label>
       <div className="inputs-container">
-        <input ref={inputRef} onKeyDown={handleKeyDown} type="text" />
+        <input
+          placeholder="Type an item or paste a link..."
+          ref={inputRef}
+          onKeyDown={handleKeyDown}
+          type="text"
+        />
         <div className="btn-wrapper">
-          <button className="btn btn-primary" onClick={handleClick}>
-            +
+          <button className="btn-secondary" onClick={handleClick}>
+            <FiChevronRight size="1.5rem" />
           </button>
         </div>
       </div>
