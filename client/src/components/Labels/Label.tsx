@@ -1,5 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import React from "react";
+import { FiX } from "react-icons/fi";
 import { IconButton } from "..";
 
 import { X } from "../../assets";
@@ -61,11 +62,12 @@ const Label: React.FC<LabelProps> = ({
     >
       <span>{label.name}</span>
 
-      <IconButton
-        className="delete-label"
-        src={X}
+      <button
         onClick={handleDeleteClick}
-      />
+        className="f-row f-center btn-circle neg delete-label"
+      >
+        <FiX size="2rem" />
+      </button>
     </div>
   );
 };

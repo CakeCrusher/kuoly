@@ -186,35 +186,37 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
           )}
         </DragOverlay>
       </DndContext>
-      <div className="f-row f-center add-label-container">
-        <div className={`adding-group ${!isAdding ? "invisible" : ""}`}>
-          <input
-            ref={inputRef}
-            onKeyDown={inputKeyDown}
-            className="add-label-input"
-            type="text"
-            // onBlur={() => setIsAdding(false)}
-          />
+      {isEditing && (
+        <div className="f-row f-center add-label-container">
+          <div className={`adding-group ${!isAdding ? "invisible" : ""}`}>
+            <input
+              ref={inputRef}
+              onKeyDown={inputKeyDown}
+              className="add-label-input"
+              type="text"
+              // onBlur={() => setIsAdding(false)}
+            />
+            <button
+              onClick={handleAddLabel}
+              className="f-row f-center btn-circle pos select-btn"
+            >
+              <FiCheck size="2rem" />
+            </button>
+            <button
+              onClick={() => setIsAdding(false)}
+              className="f-row f-center btn-circle neg select-btn"
+            >
+              <FiX size="2rem" />
+            </button>
+          </div>
           <button
+            className={`f-row f-center ${isAdding ? "invisible" : ""}`}
             onClick={handleAddLabel}
-            className="f-row f-center btn-circle pos select-btn"
           >
-            <FiCheck size="2rem" />
-          </button>
-          <button
-            onClick={() => setIsAdding(false)}
-            className="f-row f-center btn-circle neg select-btn"
-          >
-            <FiX size="2rem" />
+            <FiPlus size="1.2rem" />
           </button>
         </div>
-        <button
-          className={`f-row f-center ${isAdding ? "invisible" : ""}`}
-          onClick={handleAddLabel}
-        >
-          <FiPlus size="1.2rem" />
-        </button>
-      </div>
+      )}
     </div>
   );
 };

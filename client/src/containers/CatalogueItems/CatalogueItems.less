@@ -9,19 +9,12 @@
   .add-listing-sort {
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 0.5rem;
-
-    .catalogue-items-container {
+    min-height: 2rem;
+    @media @mobile {
       .add-listing-sort {
-        display: flex;
-        flex-direction: row;
-
-        @media @mobile {
-          .add-listing-sort {
-            flex-direction: column;
-          }
-        }
+        flex-direction: column;
       }
     }
 
