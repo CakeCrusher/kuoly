@@ -358,3 +358,18 @@ export const newOrdering = (items: any, id: string, overId: string): number => {
     return 0;
   }
 };
+
+export const textClipper = (
+  text: string | null,
+  length: number
+): string | null => {
+  if (!text || text.length <= length) {
+    return text;
+  } else {
+    return text.substring(0, length) + "...";
+  }
+};
+
+export const rootUrl = (url: string): string => {
+  return url.split("/").slice(0, 3).join("/");
+};

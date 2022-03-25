@@ -89,6 +89,19 @@ const ListingCardsContainer: React.FC<Props> = ({
     .map((listingId) => listings.find((listing) => listing.id === listingId)!)
     .filter((listing) => listing !== undefined);
 
+  if (!listingsFromIds.length) {
+    return (
+      <div className="listing-cards-container-wrapper">
+        <div className="listing-cards-container">
+          <div className="f-col f-center placeholder">
+            {listings.length
+              ? "No listings found."
+              : "No items in this list yet.\nTap “Edit” (pen button) to start adding items."}
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="listing-cards-container-wrapper">
       <div className="listing-cards-container">
