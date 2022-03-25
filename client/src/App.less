@@ -66,6 +66,25 @@ html {
 .hidden {
   display: none !important;
 }
+.m-top {
+  margin-top: 1rem;
+}
+
+.aligned-parent {
+  position: relative;
+  width: 100%;
+  .aligned-label {
+    position: absolute;
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+    height: 0.7rem;
+    top: -0.4rem;
+    left: 0.3rem;
+    padding: 0 0.2rem;
+    background-color: white;
+    color: #pallette[grey];
+  }
+}
 
 .sudo-btn,
 .btn {
@@ -335,6 +354,10 @@ input {
 }
 .h-10 {
   height: 10rem;
+}
+
+.limit-width {
+  max-width: 2000px;
 }
 
 .f-row {

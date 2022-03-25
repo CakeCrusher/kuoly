@@ -48,7 +48,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
       <section className="description-section">
         <div className="video-container">
           <div className="description">How it Works</div>

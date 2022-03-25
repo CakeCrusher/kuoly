@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal } from "..";
+import { Modal, TextareaInput } from "..";
 import useUtilsHooks from "../../graphql/hooks/utils";
 
 import "./feedback.less";
@@ -63,14 +63,26 @@ const Feedback: React.FC = () => {
             <Modal.Body>
               <div className="feedback-body">
                 <label htmlFor="feedback">Any thoughts to share?</label>
-                <textarea
+                <TextareaInput
+                  isEditing={true}
+                  handleSubmit={(val, key) => setMessage(val)}
+                  fieldEditingProp={{
+                    typename: "None",
+                    key: "feedback",
+                    id: "0",
+                  }}
+                  placeholder="Send feedback..."
+                  value={message || ""}
+                  className="textarea"
+                />
+                {/* <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   id="feedback"
                   rows={3}
                   placeholder="Send feedback..."
                   className="textarea"
-                />
+                /> */}
                 <div className="input-container-row">
                   <input
                     id="feeback-checkbox"

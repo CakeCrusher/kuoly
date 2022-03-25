@@ -116,7 +116,11 @@ const CatalogueHeader: React.FC<Props> = ({
             </div>
           </div>
           {/* description */}
-          <div className="description-container">
+          <div
+            className={`description-container ${
+              (catalogue.description || isEditing) && "m-top"
+            }`}
+          >
             <TextareaInput
               isEditing={isEditing}
               handleSubmit={editCatalogue}

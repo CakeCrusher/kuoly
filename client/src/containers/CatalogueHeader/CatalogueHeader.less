@@ -56,11 +56,16 @@
           position: relative;
           z-index: 3;
           .author {
+            min-height: 0;
+            align-self: flex-start;
             font-size: 1rem;
             margin-bottom: 0.2rem;
+            height: 1.4rem;
           }
           .title {
+            min-height: 0;
             font-size: 2rem;
+            height: 2.4rem;
           }
         }
       }
@@ -87,7 +92,6 @@
 
         .description {
           font-size: 1rem;
-          margin-top: 1rem;
         }
       }
     }
@@ -99,6 +103,7 @@
 
       @media @mobile {
         flex-direction: row;
+        align-items: center;
       }
 
       .edit-copy-share {
@@ -112,6 +117,8 @@
         justify-content: flex-end;
 
         .btn-wrapper {
+          display: flex;
+          align-items: center;
           .edit-btn {
             margin: 0;
 

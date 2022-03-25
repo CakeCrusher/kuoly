@@ -57,35 +57,44 @@ const TextareaInput = ({
   }, [textarea]);
 
   useEffect(() => {
-    const tx = document.getElementsByTagName("textarea");
-    for (let i = 0; i < tx.length; i++) {
-      tx[i].setAttribute(
+    const tx = document.getElementById(fieldEditingProp.key);
+    if (tx) {
+      tx.setAttribute(
         "style",
-        "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
+        "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
       );
-      console.log(tx[i].scrollHeight);
-      tx[i].addEventListener("input", OnInput, false);
-    }
-    function OnInput() {
-      tx[0].style.height = "auto";
-      tx[0].style.height = tx[0].scrollHeight + "px";
+      console.log(tx.scrollHeight);
+      tx.addEventListener("input", OnInput, false);
+      function OnInput() {
+        if (tx) {
+          console.log();
+          tx.style.height = "auto";
+          tx.style.height = tx.scrollHeight + "px";
+        }
+      }
     }
   }, [isEditing]);
 
   return (
     <ToggleEdit isEditing={isEditing}>
-      <textarea
-        // @ts-ignore
-        ref={textarea}
-        autoFocus={false}
-        className={`toggle-input standard-text-input ${
-          isValid ? "" : "invalid_input"
-        } ${className || ""}`}
-        onChange={(e) => setText(e.target.value)}
-        name={fieldEditingProp.key}
-        value={text}
-        placeholder={placeholder || ""}
-      />
+      <div className="toggle-input aligned-parent">
+        <label className="aligned-label" htmlFor={fieldEditingProp.key}>
+          {placeholder}
+        </label>
+        <textarea
+          // @ts-ignore
+          ref={textarea}
+          id={fieldEditingProp.key}
+          autoFocus={false}
+          className={`toggle-input standard-text-input ${
+            isValid ? "" : "invalid_input"
+          } ${className || ""}`}
+          onChange={(e) => setText(e.target.value)}
+          name={fieldEditingProp.key}
+          value={text}
+          placeholder={placeholder || ""}
+        />
+      </div>
       <div
         className={`toggle-display standard-text-display ${
           (value && className) || ""

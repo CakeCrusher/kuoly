@@ -52,19 +52,25 @@ const TextInput = ({
 
   return (
     <ToggleEdit isEditing={isEditing}>
-      <input
-        className={`toggle-input standard-text-input ${
-          isValid ? "" : "invalid_input"
-        } ${className || ""}`}
-        type="text"
-        onKeyPress={handleOnEnter}
-        onChange={(e) => setText(e.target.value)}
-        onFocus={handleFocus}
-        name={fieldEditingProp.key}
-        value={text}
-        onBlur={handleBlur}
-        placeholder={placeholder || ""}
-      />
+      <div className="toggle-input aligned-parent">
+        <label className="aligned-label" htmlFor={fieldEditingProp.key}>
+          {placeholder}
+        </label>
+        <input
+          className={`standard-text-input ${isValid ? "" : "invalid_input"} ${
+            className || ""
+          }`}
+          type="text"
+          // id={fieldEditingProp.key}
+          onKeyPress={handleOnEnter}
+          onChange={(e) => setText(e.target.value)}
+          onFocus={handleFocus}
+          name={fieldEditingProp.key}
+          value={text}
+          onBlur={handleBlur}
+          placeholder={placeholder || ""}
+        />
+      </div>
       <div
         className={`toggle-display standard-text-display ${className || ""}`}
       >
