@@ -63,7 +63,7 @@ const Label: React.FC<LabelProps> = ({
         onClick={handleDeleteClick}
         className="f-row f-center btn-circle neg delete-label"
       >
-        <FiX size="2rem" />
+        <FiX size="1rem" />
       </button>
     </div>
   );

@@ -1,12 +1,11 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { IconButton, Label } from "../..";
-import { cleanedPath } from "../../../utils/functions";
-
-import { DragHorizontal, X } from "../../../assets";
+import { Label } from "../..";
+import { cleanedPath, rootUrl, textClipper } from "../../../utils/functions";
 
 import "./ListingCard.less";
 import { useSortable } from "@dnd-kit/sortable";
+import { FiMoreHorizontal, FiX } from "react-icons/fi";
 
 type Props = {
   isEditing: boolean;
@@ -72,11 +71,24 @@ const ListingCard: React.FC<Props> = ({
         {...listeners}
         {...attributes}
       >
-        <img src={DragHorizontal} alt="drag" />
-        <IconButton onClick={handleDelete} src={X} />
+        {isEditing && (
+          <>
+            <FiMoreHorizontal />
+            <button
+              onClick={handleDelete}
+              className="btn-circle neg delete-btn icon-button"
+            >
+              <FiX size="1rem" />
+            </button>
+          </>
+        )}
       </div>
       <div className="card-body listing-card-body">
-        <div className="listing-image-wrapper">
+        <div
+          className={`listing-image-wrapper ${
+            listing.image_url ? "m-bot" : ""
+          }`}
+        >
           <img
             src={
               listing.image_url ||
@@ -87,11 +99,23 @@ const ListingCard: React.FC<Props> = ({
         </div>
 
         <div className="listing-title-description">
-          <h5>{listing.name}</h5>
-          <p>{listing.description}</p>
+          <h5 className={`listing-title ${listing.name ? "m-bot" : ""}`}>
+            {textClipper(listing.name, 50)}
+          </h5>
+          <p
+            className={`listing-description ${
+              listing.description ? "m-bot" : ""
+            }`}
+          >
+            {textClipper(listing.description, 100)}
+          </p>
         </div>
 
-        <div className="listing-labels">
+        <div
+          className={`listing-labels ${
+            listing.labels && listing.labels.length ? "m-bot" : ""
+          }`}
+        >
           {/* <LabelContainer> */}
           {listing.labels &&
             listing.labels.map((e: ListingLabel) => {
@@ -100,23 +124,36 @@ const ListingCard: React.FC<Props> = ({
           {/* </LabelContainer> */}
         </div>
 
-        <div className="listing-price">
-          {listing.show_price && listing.price && (
-            <span className="price">${listing.price}</span>
-          )}
-        </div>
+        {listing.show_price && listing.price && (
+          <div className={`listing-price m-bot`}>
+            <span className="price">~${listing.price}</span>
+          </div>
+        )}
 
-        <div className="listing-links-container">
+        <div
+          className={`listing-links-container ${
+            listing.links && listing.links.length ? "m-bot" : ""
+          }`}
+        >
           {listing.links &&
-            listing.links.map((e: Link) => (
-              <div
-                key={e.id}
-                className={`link-wrapper length-${listing.links!.length - 1}`}
+            listing.links.slice(0, 2).map((link: Link) => (
+              <a
+                href={link.url}
+                key={link.id}
+                className="listing-link-container"
+                target="_blank"
               >
-                <div className="link">
-                  <span key={e.id}> {e.title}</span>
+                <div className="link-content">
+                  <img
+                    className="link-icon"
+                    src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${rootUrl(
+                      link.url
+                    )}&size=256`}
+                    alt="url favicon"
+                  />
+                  <span>{textClipper(link.title, 20)}</span>
                 </div>
-              </div>
+              </a>
             ))}
         </div>
       </div>

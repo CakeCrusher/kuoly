@@ -62,19 +62,23 @@ const Feedback: React.FC = () => {
             </Modal.Header>
             <Modal.Body>
               <div className="feedback-body">
-                <label htmlFor="feedback">Any thoughts to share?</label>
-                <TextareaInput
-                  isEditing={true}
-                  handleSubmit={(val, key) => setMessage(val)}
-                  fieldEditingProp={{
-                    typename: "None",
-                    key: "feedback",
-                    id: "0",
-                  }}
-                  placeholder="Send feedback..."
-                  value={message || ""}
-                  className="textarea"
-                />
+                <label htmlFor="feedback" className="feedback-label">
+                  Any thoughts to share?
+                </label>
+                <div className="textarea-wrapper">
+                  <TextareaInput
+                    isEditing={true}
+                    handleSubmit={(val, key) => setMessage(val)}
+                    fieldEditingProp={{
+                      typename: "None",
+                      key: "feedback",
+                      id: "0",
+                    }}
+                    placeholder="Send feedback..."
+                    value={message || ""}
+                    className="textarea"
+                  />
+                </div>
                 {/* <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
