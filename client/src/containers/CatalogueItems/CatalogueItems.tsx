@@ -38,7 +38,10 @@ const CatalogueItems: React.FC<Props> = ({
       {/* add item, sort */}
       <div className="add-listing-sort">
         <div className="add-listing-wrapper">
-          <AddListing handleSubmit={createListing(catalogue.id)} />
+          <AddListing
+            isEditing={isEditing}
+            handleSubmit={createListing(catalogue.id)}
+          />
         </div>
         <div className="sort-wrapper">
           <ListingsFilter />

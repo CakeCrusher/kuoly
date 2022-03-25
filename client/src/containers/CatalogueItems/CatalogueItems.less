@@ -1,17 +1,29 @@
+@import "../../App.less";
+
 .catalogue-items-container {
-  padding: 1rem;
+  padding-top: 1rem;
+  @media @mobile {
+    padding: 1rem;
+  }
 
   .add-listing-sort {
     position: relative;
     display: flex;
-    flex-direction: column;
-    height: 3rem;
-    margin-bottom: 1rem;
+    flex-direction: row;
+    margin-bottom: 0.5rem;
+    min-height: 2rem;
+    @media @mobile {
+      .add-listing-sort {
+        flex-direction: column;
+      }
+    }
 
     .add-listing-wrapper {
-      position: absolute;
-      width: 100%;
-      height: 4rem;
+      position: relative;
+      width: 50%;
+      @media @mobile {
+        width: 100%;
+      }
       left: 0;
     }
 
@@ -38,16 +50,6 @@
 
   // lg
   @media (min-width: 992px) {
-    .catalogue-items-container {
-      .add-listing-sort {
-        display: flex;
-        flex-direction: row;
-
-        .add-listing-wrapper {
-          width: 50%;
-        }
-      }
-    }
   }
 
   // xl

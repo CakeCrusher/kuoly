@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { CreateCatalogueButton, Feedback } from "../components";
+import {
+  CreateCatalogueButton,
+  Feedback,
+  UndoNotification,
+} from "../components";
 import "./layout.less";
 
 const Layout: React.FC = ({ children }) => {
@@ -33,6 +37,7 @@ const Layout: React.FC = ({ children }) => {
         </div>
         <Feedback />
       </div>
+      <UndoNotification />
     </div>
   );
 };

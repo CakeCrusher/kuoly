@@ -5,13 +5,17 @@ import {
   listingsFilterOptions,
   listingsFilterTitles,
 } from "../../utils/references";
+
+import "./ListingsFilter.less";
+import { MdSort } from "react-icons/md";
+
 const ListingsFilter: React.FC = () => {
   const { listingsFilter, setListingsFilter } = useListingsFilter();
   return (
-    <div className="f-row">
-      <div className="f-row">
-        <div>img</div>
-        <div>Sort by</div>
+    <div className="f-row f-center container">
+      <div className="f-row f-center">
+        <MdSort className="icon" />
+        <div>Sort by: </div>
       </div>
       <Dropdown
         value={listingsFilter.type}
@@ -24,7 +28,7 @@ const ListingsFilter: React.FC = () => {
           id: "",
         }}
       >
-        <Dropdown.Toggle />
+        <Dropdown.Toggle className="sort-btn" />
         <Dropdown.Menu>
           {listingsFilterOptions
             .filter((option) => option !== listingsFilter.type)

@@ -143,9 +143,9 @@ export const handleDeletion = (
       ...markedForDeletion,
       {
         id: cacheId,
-        text: `${type.toLocaleLowerCase()} "${
-          dependentCacheItems[0].data[textField]
-        }" deletion`,
+        text: `${
+          type.charAt(0).toUpperCase() + type.substring(1).toLocaleLowerCase()
+        } "${dependentCacheItems[0].data[textField]}" deleted`,
         timeout: deleteTimeout,
         dependentCacheItems,
       },

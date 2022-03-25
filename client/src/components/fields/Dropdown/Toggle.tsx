@@ -20,7 +20,7 @@ const Toggle: React.FC<ToggleProps> = ({ className, disable }) => {
       onClick={disable ? undefined : handleToggle}
       className={`dropdown-toggle ${className ? className : ""}`}
     >
-      <span>{activeValue}</span>
+      <span>{activeValue.charAt(0).toUpperCase() + activeValue.slice(1)}</span>
       {!disable && (
         <IconButton src={show ? ChevronUp : ChevronDown} onClick={() => {}} />
       )}

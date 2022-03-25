@@ -11,7 +11,6 @@ import {
   CatalogueItems,
   ListingModal,
 } from "../../containers";
-import { UndoNotification } from "../../components";
 
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import {
@@ -65,7 +64,7 @@ const Catalogue: React.FC = () => {
   const catalogueQuery = handleCatalogueQuery(idVariable);
   handleCatalogueSubscription(idVariable);
   // Inputs need to toggle from Editing to Display state
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
   useEffect(() => {
     incrementCatalogueViewsMuation({
       variables: { ...idVariable },
@@ -157,7 +156,7 @@ const Catalogue: React.FC = () => {
             catalogue={catalogue}
             toggleEdit={() => setIsEditing((prev) => !prev)}
           />
-          <UndoNotification />
+
           <CatalogueItems
             catalogue={catalogue}
             isEditing={isEditing}

@@ -40,7 +40,7 @@ const TextareaInput = ({
     setIsValid(currentlyIsValid);
     const { value } = currentTarget;
 
-    if (currentlyIsValid && value) {
+    if (currentlyIsValid) {
       setFieldEditing(null);
       handleSubmit(value, fieldEditingProp.key);
     }
@@ -55,6 +55,22 @@ const TextareaInput = ({
       textarea.current.addEventListener("blur", handleBlur);
     }
   }, [textarea]);
+
+  useEffect(() => {
+    const tx = document.getElementsByTagName("textarea");
+    for (let i = 0; i < tx.length; i++) {
+      tx[i].setAttribute(
+        "style",
+        "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
+      );
+      console.log(tx[i].scrollHeight);
+      tx[i].addEventListener("input", OnInput, false);
+    }
+    function OnInput() {
+      tx[0].style.height = "auto";
+      tx[0].style.height = tx[0].scrollHeight + "px";
+    }
+  }, [isEditing]);
 
   return (
     <ToggleEdit isEditing={isEditing}>
@@ -71,7 +87,9 @@ const TextareaInput = ({
         placeholder={placeholder || ""}
       />
       <div
-        className={`toggle-display standard-text-display ${className || ""}`}
+        className={`toggle-display standard-text-display ${
+          (value && className) || ""
+        }`}
       >
         {value}
       </div>
