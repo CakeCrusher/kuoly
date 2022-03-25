@@ -1,21 +1,26 @@
 import React from "react";
 import { useMarkedForDeletion, useRemoveMFD } from "../../state/store";
 
+import "./UndoNotification.less";
+
 const UndoNotification = () => {
   const { markedForDeletion } = useMarkedForDeletion();
   const { setRemoveMFD } = useRemoveMFD();
   return (
-    <div>
+    <div className="f-col f-center notification-container">
       {markedForDeletion.map((mfd) => (
-        <button
-          key={mfd.id}
-          onClick={() => {
-            clearTimeout(mfd.timeout);
-            setRemoveMFD({ id: mfd.id, isUndo: true });
-          }}
-        >
-          Undo {mfd.text}
-        </button>
+        <div key={mfd.id} className="undo-container">
+          {mfd.text}{" "}
+          <button
+            onClick={() => {
+              clearTimeout(mfd.timeout);
+              setRemoveMFD({ id: mfd.id, isUndo: true });
+            }}
+            className="undo-button"
+          >
+            Undo
+          </button>
+        </div>
       ))}
     </div>
   );

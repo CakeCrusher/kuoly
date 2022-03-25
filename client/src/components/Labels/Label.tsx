@@ -1,9 +1,6 @@
 import { useSortable } from "@dnd-kit/sortable";
 import React from "react";
 import { FiX } from "react-icons/fi";
-import { IconButton } from "..";
-
-import { X } from "../../assets";
 
 import "./Label.less";
 

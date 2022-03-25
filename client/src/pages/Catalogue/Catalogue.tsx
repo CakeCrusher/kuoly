@@ -11,7 +11,6 @@ import {
   CatalogueItems,
   ListingModal,
 } from "../../containers";
-import { UndoNotification } from "../../components";
 
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import {
@@ -157,7 +156,7 @@ const Catalogue: React.FC = () => {
             catalogue={catalogue}
             toggleEdit={() => setIsEditing((prev) => !prev)}
           />
-          <UndoNotification />
+
           <CatalogueItems
             catalogue={catalogue}
             isEditing={isEditing}
