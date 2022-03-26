@@ -43,15 +43,28 @@ export const useRemoveMFD = (): Remove => {
 const listingsFilterVar: ReactiveVar<ListingsFilter> = makeVar<ListingsFilter>({
   type: "custom",
   labelIds: [],
-})
+});
 type Filter = {
   listingsFilter: ListingsFilter;
   setListingsFilter: (value: ListingsFilter) => void;
-}
+};
 export const useListingsFilter = (): Filter => {
-  const listingsFilter = useReactiveVar(listingsFilterVar)
+  const listingsFilter = useReactiveVar(listingsFilterVar);
   const setListingsFilter = (value: ListingsFilter) => {
-    listingsFilterVar(value)
-  }
-  return { listingsFilter, setListingsFilter }
-}
+    listingsFilterVar(value);
+  };
+  return { listingsFilter, setListingsFilter };
+};
+
+const isEditingVar: ReactiveVar<boolean> = makeVar<boolean>(true);
+type IsEditing = {
+  isEditing: boolean;
+  setIsEditing: (value: boolean) => void;
+};
+export const useIsEditing = (): IsEditing => {
+  const isEditing = useReactiveVar(isEditingVar);
+  const setIsEditing = (value: boolean) => {
+    isEditingVar(value);
+  };
+  return { isEditing, setIsEditing };
+};

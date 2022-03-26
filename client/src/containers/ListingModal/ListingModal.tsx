@@ -1,4 +1,5 @@
 import React from "react";
+import { FiEdit2, FiEye } from "react-icons/fi";
 
 import {
   FileInput,
@@ -10,6 +11,7 @@ import {
   LinksContainer,
 } from "../../components";
 import useListingApolloHooks from "../../graphql/hooks/listing";
+import { useIsEditing } from "../../state/store";
 
 import "./ListingModal.less";
 
@@ -17,18 +19,19 @@ type Props = {
   listingId: string | null;
   listing: Listing | null;
   labels: Label[] | null;
-  isEditing: boolean;
   handleClose: () => void;
+  editable: boolean;
 };
 
 const ListingModal: React.FC<Props> = ({
   listingId,
   listing,
   labels,
-  isEditing,
   handleClose,
+  editable,
 }) => {
   const { editListing, editBoolean, editListingFile } = useListingApolloHooks();
+  const { isEditing, setIsEditing } = useIsEditing();
   if (!listingId) return null;
   if (!listing) {
     return (
@@ -45,7 +48,30 @@ const ListingModal: React.FC<Props> = ({
       show={listing !== null}
       close={handleClose}
     >
-      <Modal.Header close={handleClose}>{listing && listing.name}</Modal.Header>
+      <Modal.Header close={handleClose}>
+        <div className="btn-wrapper">
+          {editable && (
+            <>
+              <button
+                onClick={() => setIsEditing(!isEditing)}
+                className="btn-icon btn-secondary edit-btn"
+              >
+                {isEditing ? (
+                  <>
+                    <FiEye />
+                    <div>Preview</div>
+                  </>
+                ) : (
+                  <>
+                    <FiEdit2 />
+                    <div>Edit</div>
+                  </>
+                )}
+              </button>
+            </>
+          )}
+        </div>
+      </Modal.Header>
       <Modal.Body>
         {/* left side - name, image*/}
         <div className="left-side side">
