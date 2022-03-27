@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import {
   handleDeletion,
   updateCatalogueCache,
@@ -10,7 +10,6 @@ import { CREATE_LABEL, DELETE_LABEL, UPDATE_LABEL_ORDER } from "../schemas";
 import { cache } from "../clientConfig";
 import { dummyLabel } from "../../utils/references";
 import { useMarkedForDeletion, useRemoveMFD } from "../../state/store";
-import { LABEL_FIELDS } from "../fragments";
 
 const useLabelApolloHooks: LabelHook.FC = ({ catalogue_id }) => {
   const { markedForDeletion, setMarkedForDeletion } = useMarkedForDeletion();

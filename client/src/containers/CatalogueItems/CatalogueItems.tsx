@@ -29,9 +29,7 @@ const CatalogueItems: React.FC<Props> = ({
   const { createListing } = useListingApolloHooks();
   const { listingsFilter } = useListingsFilter();
 
-  const organizedListings = isEditing
-    ? listings
-    : filteredListings(listings, listingsFilter);
+  const organizedListings = filteredListings(listings, listingsFilter);
 
   return (
     <div className="catalogue-items-container">

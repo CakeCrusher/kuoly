@@ -78,24 +78,24 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
   };
 
   const toggleListingFilter = (listingId: string) => {
-    if (!isEditing) {
-      // if listingsFilter.labelIds includes listingId, remove it
-      if (listingsFilter.labelIds.includes(listingId)) {
-        setListingsFilter({
-          ...listingsFilter,
-          labelIds: listingsFilter.labelIds.filter(
-            (labelId) => labelId !== listingId
-          ),
-        });
-      }
-      // if not, add it
-      else {
-        setListingsFilter({
-          ...listingsFilter,
-          labelIds: [...listingsFilter.labelIds, listingId],
-        });
-      }
+    // if (!isEditing) {
+    // if listingsFilter.labelIds includes listingId, remove it
+    if (listingsFilter.labelIds.includes(listingId)) {
+      setListingsFilter({
+        ...listingsFilter,
+        labelIds: listingsFilter.labelIds.filter(
+          (labelId) => labelId !== listingId
+        ),
+      });
     }
+    // if not, add it
+    else {
+      setListingsFilter({
+        ...listingsFilter,
+        labelIds: [...listingsFilter.labelIds, listingId],
+      });
+    }
+    // }
   };
 
   const sensors = useSensors(
@@ -163,7 +163,7 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
               label={label}
               isEditing={isEditing}
               onClick={() => toggleListingFilter(label.id)}
-              faint={!isEditing && !listingsFilter.labelIds.includes(label.id)}
+              faint={!listingsFilter.labelIds.includes(label.id)}
               deleteLabel={(id) => deleteLabel(id, catalogue)}
               hide={label.id === draggingId}
             />
@@ -177,10 +177,7 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
               label={labelDragging}
               isEditing={isEditing}
               onClick={() => toggleListingFilter(labelDragging.id)}
-              faint={
-                !isEditing &&
-                !listingsFilter.labelIds.includes(labelDragging.id)
-              }
+              faint={!listingsFilter.labelIds.includes(labelDragging.id)}
               deleteLabel={(id) => deleteLabel(id, catalogue)}
             />
           )}

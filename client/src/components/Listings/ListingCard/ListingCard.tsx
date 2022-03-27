@@ -5,7 +5,9 @@ import { cleanedPath, rootUrl, textClipper } from "../../../utils/functions";
 
 import "./ListingCard.less";
 import { useSortable } from "@dnd-kit/sortable";
-import { FiMoreHorizontal, FiX } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
+import { MdOutlineDragIndicator } from "react-icons/md";
+import { useListingsFilter } from "../../../state/store";
 
 type Props = {
   isEditing: boolean;
@@ -22,6 +24,7 @@ const ListingCard: React.FC<Props> = ({
   deleteListing,
   hide,
 }) => {
+  const { listingsFilter } = useListingsFilter();
   const navigate = useNavigate();
   const location = useLocation();
   const handleDelete = () => {
@@ -73,7 +76,9 @@ const ListingCard: React.FC<Props> = ({
       >
         {isEditing && (
           <>
-            <FiMoreHorizontal />
+            {listingsFilter.type === "custom" && (
+              <MdOutlineDragIndicator className="drag-handle-icon" />
+            )}
             <button
               onClick={handleDelete}
               className="btn-circle neg delete-btn icon-button"

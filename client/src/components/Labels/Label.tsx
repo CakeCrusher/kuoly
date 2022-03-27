@@ -1,6 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import React from "react";
 import { FiX } from "react-icons/fi";
+import { useListingsFilter } from "../../state/store";
 
 import "./Label.less";
 
@@ -22,6 +23,7 @@ const Label: React.FC<LabelProps> = ({
   onClick,
   hide,
 }) => {
+  const { listingsFilter, setListingsFilter } = useListingsFilter();
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id: label.id,
@@ -31,8 +33,15 @@ const Label: React.FC<LabelProps> = ({
       },
       disabled: !isEditing,
     });
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (e: any) => {
+    e.stopPropagation();
     if (deleteLabel) {
+      setListingsFilter({
+        ...listingsFilter,
+        labelIds: listingsFilter.labelIds.filter(
+          (labelId) => labelId !== label.id
+        ),
+      });
       deleteLabel(label.id);
     }
   };

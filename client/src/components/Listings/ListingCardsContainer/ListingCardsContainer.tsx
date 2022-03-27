@@ -20,6 +20,7 @@ import {
   SortableContext,
 } from "@dnd-kit/sortable";
 import { newOrdering } from "../../../utils/functions";
+import { useListingsFilter } from "../../../state/store";
 
 type Props = {
   isEditing: boolean;
@@ -34,6 +35,7 @@ const ListingCardsContainer: React.FC<Props> = ({
   listings,
   handleSelectListing,
 }) => {
+  const { listingsFilter } = useListingsFilter();
   const [draggingId, setDraggingId] = useState<string | null>(null);
   const [listingIds, setListingIds] = useState<string[]>(
     listings.map((listing) => listing.id)
@@ -85,18 +87,18 @@ const ListingCardsContainer: React.FC<Props> = ({
     setDraggingId(null);
   };
 
-  const listingsFromIds = listingIds
-    .map((listingId) => listings.find((listing) => listing.id === listingId)!)
-    .filter((listing) => listing !== undefined);
+  // const listingsFromIds = listingIds
+  //   .map((listingId) => listings.find((listing) => listing.id === listingId)!)
+  //   .filter((listing) => listing !== undefined);
 
-  if (!listingsFromIds.length) {
+  if (!listings.length) {
     return (
       <div className="listing-cards-container-wrapper">
         <div className="listing-cards-container">
           <div className="f-col f-center placeholder">
-            {listings.length
-              ? "No listings found."
-              : "No items in this list yet.\nTap “Edit” (pen button) to start adding items."}
+            {!catalogue.listings
+              ? "No items in this list yet.\nTap “Edit” (pen button) to start adding items."
+              : "No listings found."}
           </div>
         </div>
       </div>
@@ -105,35 +107,48 @@ const ListingCardsContainer: React.FC<Props> = ({
   return (
     <div className="listing-cards-container-wrapper">
       <div className="listing-cards-container">
-        <DndContext
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
-          sensors={sensors}
-          collisionDetection={closestCenter}
-        >
-          <SortableContext items={listingIds} strategy={rectSortingStrategy}>
-            {listingsFromIds.map((listing: Listing) => (
-              <ListingCard
-                key={listing.id}
-                listing={listing}
-                isEditing={isEditing}
-                selectListing={handleSelectListing}
-                deleteListing={deleteListing}
-                hide={listing.id === draggingId}
-              />
-            ))}
-          </SortableContext>
-          <DragOverlay>
-            {draggingId && (
-              <ListingCard
-                listing={listingDragging}
-                isEditing={isEditing}
-                selectListing={handleSelectListing}
-                deleteListing={deleteListing}
-              />
-            )}
-          </DragOverlay>
-        </DndContext>
+        {listingsFilter.type === "custom" ? (
+          <DndContext
+            onDragStart={handleDragStart}
+            onDragEnd={handleDragEnd}
+            sensors={sensors}
+            collisionDetection={closestCenter}
+          >
+            <SortableContext items={listingIds} strategy={rectSortingStrategy}>
+              {listings.map((listing: Listing) => (
+                <ListingCard
+                  key={listing.id}
+                  listing={listing}
+                  isEditing={isEditing}
+                  selectListing={handleSelectListing}
+                  deleteListing={deleteListing}
+                  hide={listing.id === draggingId}
+                />
+              ))}
+            </SortableContext>
+            <DragOverlay>
+              {draggingId && (
+                <ListingCard
+                  listing={listingDragging}
+                  isEditing={isEditing}
+                  selectListing={handleSelectListing}
+                  deleteListing={deleteListing}
+                />
+              )}
+            </DragOverlay>
+          </DndContext>
+        ) : (
+          listings.map((listing: Listing) => (
+            <ListingCard
+              key={listing.id}
+              listing={listing}
+              isEditing={isEditing}
+              selectListing={handleSelectListing}
+              deleteListing={deleteListing}
+              hide={listing.id === draggingId}
+            />
+          ))
+        )}
       </div>
     </div>
   );
