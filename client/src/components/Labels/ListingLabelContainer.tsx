@@ -45,7 +45,7 @@ const ListingLabelContainer: React.FC<Props> = ({
               listing.labels?.find((l: ListingLabel) => l.label.id === label.id)
             )
           }
-          onClick={() => handleListingClick(label)}
+          onClick={isEditing ? () => handleListingClick(label) : undefined}
           isEditing={isEditing}
         />
       ))}

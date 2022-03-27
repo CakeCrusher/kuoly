@@ -60,7 +60,7 @@ const Label: React.FC<LabelProps> = ({
       onClick={handleClick}
       className={`label f-center ${
         isEditing && deleteLabel ? "show-delete" : ""
-      } ${hide ? "hide" : faint && "faint"}`}
+      } ${onClick ? "clickable" : ""} ${hide ? "hide" : faint && "faint"}`}
       ref={setNodeRef}
       {...listeners}
       {...attributes}

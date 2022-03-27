@@ -56,7 +56,7 @@ export const useListingsFilter = (): Filter => {
   return { listingsFilter, setListingsFilter };
 };
 
-const isEditingVar: ReactiveVar<boolean> = makeVar<boolean>(true);
+const isEditingVar: ReactiveVar<boolean> = makeVar<boolean>(false);
 type IsEditing = {
   isEditing: boolean;
   setIsEditing: (value: boolean) => void;
