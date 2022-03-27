@@ -57,7 +57,9 @@ const TextareaInput = ({
   }, [textarea]);
 
   useEffect(() => {
-    const tx = document.getElementById(fieldEditingProp.key);
+    const tx = document.getElementById(
+      fieldEditingProp.typename + fieldEditingProp.key
+    );
     if (tx) {
       tx.setAttribute(
         "style",
@@ -84,13 +86,13 @@ const TextareaInput = ({
         <textarea
           // @ts-ignore
           ref={textarea}
-          id={fieldEditingProp.key}
+          id={fieldEditingProp.typename + fieldEditingProp.key}
           autoFocus={false}
           className={`toggle-input standard-text-input ${
             isValid ? "" : "invalid_input"
           } ${className || ""}`}
           onChange={(e) => setText(e.target.value)}
-          name={fieldEditingProp.key}
+          name={fieldEditingProp.typename + fieldEditingProp.key}
           value={text}
           placeholder={placeholder || ""}
         />

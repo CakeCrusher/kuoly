@@ -59,8 +59,6 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
       return new Date(a.created).getTime() - new Date(b.created).getTime();
     });
 
-  console.log("_isValid", _isValid);
-
   return (
     <div className="listing-links-container-modified">
       {orderedLinks &&

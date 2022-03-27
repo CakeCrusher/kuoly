@@ -165,6 +165,7 @@ const Catalogue: React.FC = () => {
             handleSelectListing={handleSelectListing}
           />
           <ListingModal
+            catalogueId={catalogue.id}
             labels={sortedLabels}
             listingId={selectedListingId}
             listing={selectedListing}

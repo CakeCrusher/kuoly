@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import ToggleEdit from "../../ToggleEdit/ToggleEdit";
+import { Camera } from "../../../assets";
+import IconButton from "../../IconButton/IconButton";
+
+import "./FileInput.less";
 
 type Props = {
   isEditing: boolean;
   handleSubmit: GenericFileEdit;
-  value: string;
+  value: string | null;
   keyProp: string;
   className?: string;
 };
@@ -30,16 +33,27 @@ const FileInput: React.FC<Props> = ({
   };
 
   return (
-    <ToggleEdit isEditing={isEditing}>
-      <input
-        className={`toggle-input standard-text-input ${className || ""}`}
-        type="file"
-        onChange={handleFileInput}
-        name={keyProp}
-        accept="*.png,*.jpeg,*.jpg,*.txt ,*.gif"
-      />
-      <img src={value} alt="" />
-    </ToggleEdit>
+    <div>
+      {isEditing && (
+        <div className="file-input">
+          <label
+            className={value ? "with-image" : "no-image"}
+            htmlFor={keyProp}
+          >
+            <IconButton src={Camera} />
+          </label>
+          <input
+            className={`toggle-input standard-text-input ${className || ""}`}
+            type="file"
+            onChange={handleFileInput}
+            name={keyProp}
+            id={keyProp}
+            accept="*.png,*.jpeg,*.jpg,*.txt ,*.gif"
+          />
+        </div>
+      )}
+      {value && <img className="file-image" src={value} alt="" />}
+    </div>
   );
 };
 
