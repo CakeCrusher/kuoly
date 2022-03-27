@@ -10,6 +10,14 @@ type Props = {
 };
 
 const IconButton: React.FC<Props> = ({ className, onClick, src, label }) => {
+  if (!onClick) {
+    return (
+      <div className={`icon-button ${className ? className : ""}`}>
+        <img src={src} />
+        <span>{label}</span>
+      </div>
+    );
+  }
   return (
     <button
       className={`icon-button ${className ? className : ""}`}

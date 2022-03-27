@@ -1,10 +1,12 @@
 @import "../../App.less";
 
 .modal {
-  display: flex;
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100%;
-  width: 100vw;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   top: 0;
   left: 0;
@@ -26,22 +28,27 @@
   .modal-dialog {
     border-radius: 15px;
     padding: 2rem 3rem;
+    width: auto !important;
     background-color: white;
     display: flex;
     max-width: none !important;
     justify-content: center;
     margin: 2rem auto;
     height: fit-content;
-    max-height: 90vw;
+    max-height: 90vh;
     overflow-y: auto;
     overflow-x: none;
+    @media @mobile {
+      border-radius: 0;
+    }
 
     .modal-content {
-      min-width: 20rem;
+      min-width: 10rem;
 
       .modal-header {
         display: flex;
         position: relative;
+        font-size: 1rem;
         .close {
           position: absolute;
           right: -2.5rem;
@@ -51,7 +58,6 @@
       }
 
       .modal-body {
-        flex: 1 0 auto;
         display: flex;
         flex-direction: column;
         align-items: center;

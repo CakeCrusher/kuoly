@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Checkbox.less";
+
 type Props = {
   value: Boolean;
   label: string;

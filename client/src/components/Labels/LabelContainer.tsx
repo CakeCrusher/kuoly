@@ -192,7 +192,7 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
             <input
               ref={inputRef}
               onKeyDown={inputKeyDown}
-              className="add-label-input"
+              className="add-input"
               type="text"
               // onBlur={() => setIsAdding(false)}
             />

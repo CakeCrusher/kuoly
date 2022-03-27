@@ -1,8 +1,7 @@
 import React, { KeyboardEvent, useRef, useState } from "react";
-import { IconButton } from "..";
-import { Plus } from "../../assets";
+import { FiCheck, FiEdit2, FiX } from "react-icons/fi";
 import useLinkApolloHooks from "../../graphql/hooks/link";
-import { isUrl } from "../../utils/functions";
+import { isUrl, rootUrl, textClipper } from "../../utils/functions";
 import EditLinkModal from "./EditLinkModal";
 
 import "./LinksContainer.less";
@@ -14,7 +13,6 @@ type Props = {
 
 const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
   const linkInputRef = useRef<HTMLInputElement>(null);
-  isEditing = true;
   const [linkEditingId, setLinkEditingId] = useState<string | null>(null);
   const [_isValid, setIsValid] = useState(true);
   const { addLink, removeLink } = useLinkApolloHooks();
@@ -31,6 +29,7 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
     } else {
       setIsValid(false);
     }
+    linkInputRef.current.focus();
   };
   const inputKeyDown = (evt: KeyboardEvent) => {
     if (evt.key === "Enter" && linkInputRef.current) {
@@ -40,6 +39,13 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
 
   const handleEditLinkClose = () => {
     setLinkEditingId(null);
+  };
+
+  const stopAddingLink = () => {
+    if (linkInputRef.current) {
+      console.log("stop adding link");
+      linkInputRef.current.value = "";
+    }
   };
 
   const linkEditing =
@@ -54,36 +60,80 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
     });
 
   return (
-    <div className="links-container">
+    <div className="listing-links-container-modified">
       {orderedLinks &&
         orderedLinks.map((link: Link) => (
-          <div
-            className={`link-wrapper length-${orderedLinks.length}`}
-            key={link.id}
-          >
-            <div className={`link ${isEditing ? "" : "editing"}`}>
-              <button onClick={() => removeLink(link.id)}>X</button>
-              <a href={link.url} key={link.id} target="_blank">
-                {link.title}
+          <>
+            {isEditing ? (
+              <div key={link.id} className="listing-link-container editing">
+                <button
+                  className="btn-icon btn-secondary edit-btn edit-link-btn"
+                  onClick={() => setLinkEditingId(link.id)}
+                >
+                  <FiEdit2 />
+                </button>
+
+                <div className="link-content">
+                  <img
+                    className="link-icon"
+                    src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${rootUrl(
+                      link.url
+                    )}&size=256`}
+                    alt="url favicon"
+                  />
+                  <span>{textClipper(link.title, 20)}</span>
+                </div>
+                <button
+                  onClick={() => removeLink(link.id)}
+                  className="f-row f-center btn-circle neg select-btn"
+                >
+                  <FiX size="2rem" />
+                </button>
+              </div>
+            ) : (
+              <a
+                href={link.url}
+                key={link.id}
+                className="listing-link-container"
+                target="_blank"
+              >
+                <div className="link-content">
+                  <img
+                    className="link-icon"
+                    src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${rootUrl(
+                      link.url
+                    )}&size=256`}
+                    alt="url favicon"
+                  />
+                  <span>{textClipper(link.title, 20)}</span>
+                </div>
               </a>
-              <button onClick={() => setLinkEditingId(link.id)}>Edit</button>
-            </div>
-          </div>
+            )}
+          </>
         ))}
-      {!(listing.links && listing.links.length > 5) && (
-        <div
-          className={`d-flex link-wrapper length-${
-            listing.links && listing.links.length
-          } input-wrapper ${isEditing ? "" : "hidden"}`}
-        >
-          <div className="link input-wrapper">
+      {isEditing && (
+        <div className="listing-link-container editing add-link-container">
+          <div className={`adding-group`}>
             <input
               ref={linkInputRef}
               onKeyDown={inputKeyDown}
+              className={`add-input ${_isValid ? "" : "invalid"}`}
               type="text"
-              placeholder="Add Link"
+              placeholder="Add link"
+              // onBlur={() => setIsAdding(false)}
             />
-            <IconButton src={Plus} onClick={handleSubmit} />
+            <button
+              onClick={handleSubmit}
+              className="f-row f-center btn-circle pos select-btn"
+            >
+              <FiCheck size="2rem" />
+            </button>
+            <button
+              onClick={stopAddingLink}
+              className="f-row f-center btn-circle neg select-btn"
+            >
+              <FiX size="2rem" />
+            </button>
           </div>
         </div>
       )}

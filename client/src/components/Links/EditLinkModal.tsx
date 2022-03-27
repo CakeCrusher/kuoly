@@ -27,37 +27,49 @@ const EditLinkModal: React.FC<Props> = ({ link, handleClose }) => {
 
   return (
     <Modal show={link !== null} close={handleClose}>
-      <div className="row-container">
-        <img
-          src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${rootUrl(
-            link.url
-          )}&size=256`}
-          alt="url favicon"
-        />
-        <TextInput
-          isEditing={true}
-          handleSubmit={handleSubmit}
-          value={link.title || ""}
-          fieldEditingProp={{
-            typename: "Link",
-            key: "title",
-            id: link.id,
-          }}
-          placeholder="title"
-        />
-      </div>
-      <TextInput
-        isEditing={true}
-        handleSubmit={handleSubmit}
-        validator={isUrl}
-        value={link.url || ""}
-        fieldEditingProp={{
-          typename: "Link",
-          key: "url",
-          id: link.id,
-        }}
-        placeholder="url"
-      />
+      <Modal.Header close={handleClose}>
+        <span className="edit-link-header">Edit link info</span>
+      </Modal.Header>
+      <Modal.Body>
+        <div className="edit-link-body">
+          <div className="title-img-container">
+            <TextInput
+              isEditing={true}
+              handleSubmit={handleSubmit}
+              value={link.title || ""}
+              fieldEditingProp={{
+                typename: "Link",
+                key: "title",
+                id: link.id,
+              }}
+              placeholder="title"
+              className="title-input"
+            />
+            <div className="link-icon-container">
+              <img
+                src={`https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${rootUrl(
+                  link.url
+                )}&size=256`}
+                alt="url favicon"
+                className="link-icon"
+              />
+            </div>
+          </div>
+          <TextInput
+            isEditing={true}
+            handleSubmit={handleSubmit}
+            validator={isUrl}
+            value={link.url || ""}
+            fieldEditingProp={{
+              typename: "Link",
+              key: "url",
+              id: link.id,
+            }}
+            placeholder="url"
+            className="link-url"
+          />
+        </div>
+      </Modal.Body>
     </Modal>
   );
 };

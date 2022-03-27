@@ -1,178 +1,58 @@
-.hidden {
-  display: none;
+@import "../../App.less";
+
+.listing-links-container-modified {
+  .listing-links-container;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5rem;
+  @media @mobile {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-.links-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+.add-link-container {
+  justify-content: center !important;
+}
+
+.edit-link-btn {
+  height: 1.5rem;
+  width: 1.5rem !important;
+  border-radius: 3px !important;
+  padding: 0.2rem !important;
+}
+
+// Modal
+.edit-link-body {
+  width: 20rem;
+}
+.title-img-container {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  column-gap: 0.5rem;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  width: 100%;
-  gap: 4px;
-
-  .link-wrapper {
-    border: 2px solid pink;
-    padding: 4px;
-    width: calc(50% - 4px);
-
-    &:first-of-type {
-      border-radius: 10px 10px 0 0;
-    }
-
-    &:last-of-type {
-
-      border-radius: 0 0 10px 10px;
-    }
-
-    .link {
-      display: flex;
+  justify-content: stretch;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  .title-input {
+    width: 100%;
+    min-height: 0;
+    height: 2rem;
+    font-size: 1rem;
+  }
+  .link-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > img {
+      height: 100%;
       width: 100%;
-      height: 2rem;
-      font-size: 1.125rem;
-      justify-content: space-around;
-      align-items: center;
-      max-width: 100%;
-
-      a {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        flex: 2 0 50%;
-      }
-
-      button {
-        flex: 1 0 25%;
-      }
-
-      &.editing {
-        >button {
-          display: none;
-        }
-      }
-    }
-
-    .input-wrapper {
-      position: relative;
-      display: flex;
-      justify-content: flex-end;
-
-      input {
-        border: none;
-        width: 80%;
-        font-size: 1.125rem;
-
-        &:focus {
-          outline: none;
-        }
-      }
-
-      .icon-button {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 16px;
-        width: 16px;
-        padding: 2px;
-        margin: 0;
-        background-color: @primary500;
-        transform: translateY(calc(50% - 2px)) translateX(8px);
-
-        img {
-          filter: invert(1);
-        }
-      }
+      object-fit: contain;
     }
   }
 }
-
-.invalid_input {
-  background-color: #f2dede;
-  border-color: #ebccd1;
-}
-
-@media screen {
-  // sm
-  @media (min-width: 576px) {
-  }
-
-  // md
-  @media (min-width: 768px) {
-    .links-container {
-      flex-direction: row;
-      .link-wrapper {
-        &.length-null {
-          border-radius: 10px;
-        }
-        &.length-1{
-          &:first-of-type {
-            border-radius: 10px 0 0 10px;
-          }
-
-          &:last-of-type {
-            border-radius: 0 10px 10px 0;
-          }
-        }
-        &.length-2{
-          &:first-of-type {
-            border-radius: 10px 0 0 10px;
-          }
-
-          &:nth-of-type(2) {
-            border-radius: 0 10px 10px 0;
-          }
-          
-          &:last-of-type {
-            border-radius: 10px;
-          }
-        }
-        &.length-3,
-        &.length-5,
-        &.length-6{
-          &:first-of-type {
-            border-radius: 10px 0 0 0;
-          }
-          &:nth-of-type(2) {
-            border-radius: 0 10px 0 0;
-          }
-          &:nth-last-of-type(2) {
-            border-radius: 0 0 0 10px;
-          }
-          &:last-of-type {
-            border-radius: 0 0 10px 0;
-          }
-        }
-        &.length-4{
-          &:first-of-type {
-            border-radius: 10px 0 0 0;
-          }
-          &:nth-of-type(2) {
-            border-radius: 0 10px 0 0;
-          }
-          &:nth-last-of-type(3) {
-            border-radius: 0 0 0 10px;
-          }
-          &:nth-last-of-type(2) {
-            border-radius: 0 0 10px 0;
-          }
-          &:last-of-type {
-            border-radius: 10px;
-          }
-        }
-        
-      }
-    }
-  }
-
-  // lg
-  @media (min-width: 992px) {
-  }
-
-  // xl
-  @media (min-width: 1200px) {
-  }
-
-  // xxl
-  @media (min-width: 1400px) {
-  }
+.link-url {
+  min-height: 0;
+  height: 2rem;
+  font-size: 1rem;
 }

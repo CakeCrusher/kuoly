@@ -84,19 +84,15 @@ const ListingCard: React.FC<Props> = ({
         )}
       </div>
       <div className="card-body listing-card-body">
-        <div
-          className={`listing-image-wrapper ${
-            listing.image_url ? "m-bot" : ""
-          }`}
-        >
-          <img
-            src={
-              listing.image_url ||
-              "https://media.wired.com/photos/592722c1af95806129f51b71/master/pass/MIT-Web-Loading.jpg"
-            }
-            draggable={false}
-          />
-        </div>
+        {listing.image_url && (
+          <div
+            className={`listing-image-wrapper ${
+              listing.image_url ? "m-bot" : ""
+            }`}
+          >
+            <img src={listing.image_url} draggable={false} />
+          </div>
+        )}
 
         <div className="listing-title-description">
           <h5 className={`listing-title ${listing.name ? "m-bot" : ""}`}>

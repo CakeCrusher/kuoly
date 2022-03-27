@@ -18,7 +18,7 @@ import {
   getCatalogueFromCache,
   removeFromCacheIfMFD,
 } from "../../utils/functions";
-import { useMarkedForDeletion } from "../../state/store";
+import { useIsEditing, useMarkedForDeletion } from "../../state/store";
 
 import "./Catalogue.less";
 
@@ -64,7 +64,7 @@ const Catalogue: React.FC = () => {
   const catalogueQuery = handleCatalogueQuery(idVariable);
   handleCatalogueSubscription(idVariable);
   // Inputs need to toggle from Editing to Display state
-  const [isEditing, setIsEditing] = useState(true);
+  const { isEditing, setIsEditing } = useIsEditing();
   useEffect(() => {
     incrementCatalogueViewsMuation({
       variables: { ...idVariable },
@@ -154,7 +154,7 @@ const Catalogue: React.FC = () => {
             isEditing={isEditing}
             editable={editable}
             catalogue={catalogue}
-            toggleEdit={() => setIsEditing((prev) => !prev)}
+            toggleEdit={() => setIsEditing(!isEditing)}
           />
 
           <CatalogueItems
@@ -165,11 +165,12 @@ const Catalogue: React.FC = () => {
             handleSelectListing={handleSelectListing}
           />
           <ListingModal
-            isEditing={isEditing}
+            catalogueId={catalogue.id}
             labels={sortedLabels}
             listingId={selectedListingId}
             listing={selectedListing}
             handleClose={handleListingModalClose}
+            editable={editable}
           />
         </div>
       </div>
