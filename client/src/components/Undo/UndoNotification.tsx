@@ -1,5 +1,6 @@
 import React from "react";
 import { useMarkedForDeletion, useRemoveMFD } from "../../state/store";
+import { textClipper } from "../../utils/functions";
 
 import "./UndoNotification.less";
 
@@ -10,7 +11,7 @@ const UndoNotification = () => {
     <div className="f-col f-center notification-container">
       {markedForDeletion.map((mfd) => (
         <div key={mfd.id} className="undo-container">
-          {mfd.text}{" "}
+          {textClipper(mfd.text, 30)}{" "}
           <button
             onClick={() => {
               clearTimeout(mfd.timeout);

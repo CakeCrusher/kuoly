@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, useRef, useState } from "react";
-import { FiCheck, FiEdit2, FiX } from "react-icons/fi";
+import { FiCheck, FiEdit2, FiPlus, FiX } from "react-icons/fi";
 import useLinkApolloHooks from "../../graphql/hooks/link";
 import { isUrl, rootUrl, textClipper } from "../../utils/functions";
 import EditLinkModal from "./EditLinkModal";
@@ -15,6 +15,7 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
   const linkInputRef = useRef<HTMLInputElement>(null);
   const [linkEditingId, setLinkEditingId] = useState<string | null>(null);
   const [_isValid, setIsValid] = useState(true);
+  const [isAddingLink, setIsAddingLink] = useState(false);
   const { addLink, removeLink } = useLinkApolloHooks();
 
   const handleSubmit = () => {
@@ -45,6 +46,7 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
     if (linkInputRef.current) {
       console.log("stop adding link");
       linkInputRef.current.value = "";
+      setIsAddingLink(false);
     }
   };
 
@@ -58,6 +60,13 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
       // transform date to number
       return new Date(a.created).getTime() - new Date(b.created).getTime();
     });
+
+  const onAddLinkClick = () => {
+    setIsAddingLink(true);
+    if (linkInputRef.current) {
+      linkInputRef.current.focus();
+    }
+  };
 
   return (
     <div className="listing-links-container-modified">
@@ -113,13 +122,13 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
         ))}
       {isEditing && (
         <div className="listing-link-container editing add-link-container">
-          <div className={`adding-group`}>
+          <div className={`adding-group ${isAddingLink ? "" : "invisible"}`}>
             <input
               ref={linkInputRef}
               onKeyDown={inputKeyDown}
               className={`add-input ${_isValid ? "" : "invalid"}`}
               type="text"
-              placeholder="Add link"
+              placeholder="Add a link..."
               // onBlur={() => setIsAdding(false)}
             />
             <button
@@ -135,6 +144,15 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
               <FiX size="2rem" />
             </button>
           </div>
+          <button
+            onClick={onAddLinkClick}
+            className={`f-row f-center add-link-container-button ${
+              isAddingLink ? "invisible" : ""
+            }`}
+          >
+            <FiPlus className="link-add-icon" />
+            <span>Add a link...</span>
+          </button>
         </div>
       )}
       <EditLinkModal link={linkEditing} handleClose={handleEditLinkClose} />

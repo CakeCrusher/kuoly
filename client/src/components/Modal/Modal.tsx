@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import ReactTooltip from "react-tooltip";
 import { X } from "../../assets";
 
 import "./Modal.less";
@@ -64,9 +65,20 @@ const Header: React.FC<HeaderProps> = ({ close, children }) => {
     <div className="modal-header">
       <div className="modal-title">{children}</div>
       {close && (
-        <button type="button" className="close" onClick={close}>
-          <img src={X} />
-        </button>
+        <>
+          <button
+            data-tip
+            data-for="close"
+            type="button"
+            className="close"
+            onClick={close}
+          >
+            <img src={X} />
+          </button>
+          <ReactTooltip id="close" place="top" effect="solid">
+            {"Save & Close"}
+          </ReactTooltip>
+        </>
       )}
     </div>
   );

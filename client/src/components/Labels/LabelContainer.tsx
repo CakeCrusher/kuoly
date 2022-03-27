@@ -16,6 +16,7 @@ import {
 } from "@dnd-kit/sortable";
 import React, { KeyboardEvent, useState, useRef, useEffect } from "react";
 import { FiCheck, FiPlus, FiX } from "react-icons/fi";
+import ReactTooltip from "react-tooltip";
 import useLabelApolloHooks from "../../graphql/hooks/label";
 import { useListingsFilter } from "../../state/store";
 import { newOrdering } from "../../utils/functions";
@@ -49,7 +50,6 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
   }, [labels]);
 
   const handleAddLabel = () => {
-    console.log("add label");
     if (!inputRef.current) {
       throw new Error("Could not get labels input");
     }
@@ -207,11 +207,16 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
             </button>
           </div>
           <button
+            data-tip
+            data-for="close"
             className={`f-row f-center ${isAdding ? "invisible" : ""}`}
             onClick={handleAddLabel}
           >
             <FiPlus size="1.2rem" />
           </button>
+          <ReactTooltip id="close" place="top" effect="solid">
+            {"Add label"}
+          </ReactTooltip>
         </div>
       )}
     </div>
