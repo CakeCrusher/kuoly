@@ -19,11 +19,11 @@ const Home = () => {
     return (
       <div className="btn-container">
         <CreateCatalogueButton className="create" />
-        {cachedData && cachedData.myCatalogues.length && (
+        {cachedData && cachedData.myCatalogues.length ? (
           <Link className="btn btn-outline" to={`/catalogues`}>
             My Catalogues
           </Link>
-        )}
+        ) : null}
       </div>
     );
   };
