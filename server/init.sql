@@ -120,7 +120,7 @@ INSERT INTO catalogues (
   'Join an Empire State Building ambassador for this historic tour of the world`s most famous skyscraper, plus you`ll bring home a limited edition 90th anniversary tote bag! Buy Tickets. Sunri',
   'Sebastian',
   'https://storage.googleapis.com/givespace-pictures/profile1647721041622.PNG',
-  'https://storage.googleapis.com/givespace-pictures/bootstrap-colors1647721021052.JPG'
+  'https://storage.googleapis.com/givespace-pictures/Capture1648341244550.PNG'
 ); 
 
 INSERT INTO labels (
