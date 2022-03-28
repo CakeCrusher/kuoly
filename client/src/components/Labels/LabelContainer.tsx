@@ -208,13 +208,13 @@ const LabelContainer: React.FC<Props> = ({ isEditing, catalogue, labels }) => {
           </div>
           <button
             data-tip
-            data-for="close"
+            data-for="add-label"
             className={`f-row f-center ${isAdding ? "invisible" : ""}`}
             onClick={handleAddLabel}
           >
             <FiPlus size="1.2rem" />
           </button>
-          <ReactTooltip id="close" place="top" effect="solid">
+          <ReactTooltip id="add-label" place="top" effect="solid">
             {"Add label"}
           </ReactTooltip>
         </div>
