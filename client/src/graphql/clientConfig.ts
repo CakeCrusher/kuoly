@@ -20,11 +20,13 @@ export const httpLink = createUploadLink({
       : "",
   },
 });
-
+// if url begins with https then replace it with wss
 const wsUri =
   process.env.NODE_ENV === "development"
     ? window.location.origin.replace(/^http/, "ws")
-    : window.location.origin.replace(/^https/, "wss");
+    : window.location.origin.slice(0, 5) === "https"
+    ? window.location.origin.replace(/^https/, "wss")
+    : window.location.origin.replace(/^http/, "ws");
 const wsLink = new WebSocketLink({
   uri: wsUri + "/graphql",
   options: {
