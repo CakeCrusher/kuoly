@@ -24,7 +24,7 @@ export const httpLink = createUploadLink({
 const wsUri =
   process.env.NODE_ENV === "development"
     ? window.location.origin.replace(/^http/, "ws")
-    : window.location.origin.replace(/^https/, "ws");
+    : window.location.origin.replace(/^https/, "wss");
 const wsLink = new WebSocketLink({
   uri: wsUri + "/graphql",
   options: {
