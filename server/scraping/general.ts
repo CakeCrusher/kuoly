@@ -12,7 +12,6 @@ export const generalScraper = async (
     const res = await fetch(url);
     if (!res.ok) throw new UserInputError("Invalid URL or item name");
     // get res status
-    console.log("res.status", res.status);
     html = await res.text();
   }
 

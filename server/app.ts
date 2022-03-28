@@ -26,7 +26,6 @@ app.set("views", path.resolve(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.get("*", (req, _res, next) => {
-  console.log(req.path);
   next();
 });
 

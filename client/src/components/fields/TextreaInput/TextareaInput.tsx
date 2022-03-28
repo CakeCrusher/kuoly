@@ -65,11 +65,9 @@ const TextareaInput = ({
         "style",
         "height:" + tx.scrollHeight + "px;overflow-y:hidden;"
       );
-      console.log(tx.scrollHeight);
       tx.addEventListener("input", OnInput, false);
       function OnInput() {
         if (tx) {
-          console.log();
           tx.style.height = "auto";
           tx.style.height = tx.scrollHeight + "px";
         }

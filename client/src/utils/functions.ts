@@ -25,7 +25,7 @@ export const apolloHookErrorHandler = (
 ): void => {
   if (hookError) {
     if (hookError.message.includes("Catalogue does not exist")) {
-      console.log("Catalogue does not exist", path);
+      // console.log("Catalogue does not exist", path);
       window.location.reload();
       return;
     }

@@ -88,7 +88,7 @@ const apolloServer = new ApolloServer({
         metric.operation_name
       )
     ) {
-      console.log("!metrics", metric);
+      console.log("!metrics: ", metric);
       db.query(
         "INSERT INTO metrics (type, user_id, operation_name, operation_type, operation_variables) VALUES ($1, $2, $3, $4, $5) RETURNING *",
         [

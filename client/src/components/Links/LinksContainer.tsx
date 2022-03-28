@@ -20,7 +20,6 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
 
   const handleSubmit = () => {
     if (!linkInputRef.current) {
-      console.log("no input");
       return null;
     }
     if (isUrl(linkInputRef.current.value)) {
@@ -44,7 +43,6 @@ const LinksContainer: React.FC<Props> = ({ listing, isEditing }) => {
 
   const stopAddingLink = () => {
     if (linkInputRef.current) {
-      console.log("stop adding link");
       linkInputRef.current.value = "";
       setIsAddingLink(false);
     }

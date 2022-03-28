@@ -4,7 +4,6 @@ import fs from "fs";
 const sslVar = process.env.NODE_ENV === "development" ? false : {
   rejectUnauthorized: false,
 }
-console.log("sslVar", sslVar)
 const db = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: sslVar,
@@ -26,8 +25,10 @@ if (process.env.NODE_ENV !== "production") {
     return () =>
       new Promise<void>(async (resolve) => {
         db.query(query, (result) => {
-          console.log("Running: ", query);
-          console.log("Result: " + result);
+          if (process.env.NODE_ENV === "development") {
+            console.log("Running: ", query);
+            console.log("Result: " + result);
+          }
           resolve();
         });
       });

@@ -22,7 +22,7 @@ const AddListing: React.FC<Props> = ({ handleSubmit, isEditing }) => {
         target.value = "";
       } else {
         // TODO: There should be some feedback for the user
-        console.log("No empty input");
+        // console.log("No empty input");
       }
     }
   };

@@ -26,9 +26,8 @@ const FileInput: React.FC<Props> = ({
     if (files && files[0]) {
       setFile(files[0]);
       handleSubmit(files[0], keyProp);
-      console.log("file changed: ", file);
     } else {
-      console.error("No file selected");
+      // console.error("No file selected");
     }
   };
 

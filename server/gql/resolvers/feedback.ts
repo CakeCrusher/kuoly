@@ -18,13 +18,10 @@ const feedbackResolvers = {
       args: { message: string; email?: string },
       { authorization }: Context
     ) => {
-      console.log("HERE");
-      console.log("args", [authorization, args.message, args.email]);
       const feedbackRes = await db.query(
         "INSERT INTO feedback (user_id, message, email) VALUES ($1, $2, $3) RETURNING *",
         [authorization, args.message, args.email]
       );
-      console.log("Feedback: ", feedbackRes.rows);
       notExist("Metric", feedbackRes.rows[0]);
       return feedbackRes.rows[0];
     },

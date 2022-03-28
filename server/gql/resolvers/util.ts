@@ -43,19 +43,7 @@ const userResolvers = {
   },
   Mutation: {
     singleUpload: async (_, { file }) => {
-      console.log("file", file);
       const { createReadStream, filename, mimetype, encoding } = await file;
-      // const stream = createReadStream();
-      // const pathName = path.join(__dirname, "../../images/", filename);
-      // const out = require("fs").createWriteStream(pathName);
-      // stream.pipe(out);
-      // console.log("before");
-      // await finished(out);
-      // console.log("after");
-
-      // await bucket.upload(pathName, { destination: filename });
-      // console.log("uploaded");
-      // const publicUrl = `https://storage.googleapis.com/${GC_BUCKET_ID}/${filename}`;
 
       const url = await handleFile(file, uploadToGC);
 

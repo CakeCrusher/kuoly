@@ -26,7 +26,6 @@ const useLabelApolloHooks: LabelHook.FC = ({ catalogue_id }) => {
       id: `Catalogue:${catalogue_id}`,
       fields: {
         labels(existing): Label[] {
-          console.log(existing);
           if (!existing) return [{ ...dummyLabel(catalogue_id), name }];
           return [
             ...existing,

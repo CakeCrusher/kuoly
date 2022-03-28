@@ -26,7 +26,7 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
     // prevents page from being reloaded on error
     if (catalogueQuery.error) {
       if (catalogueQuery.error.message.includes("Catalogue does not exist")) {
-        console.log("catalogueQuery", ": Catalogue does not exist");
+        // console.log("catalogueQuery", ": Catalogue does not exist");
       } else {
         apolloHookErrorHandler("catalogueQuery", catalogueQuery.error);
       }
@@ -58,7 +58,7 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
     // prevents page from being reloaded on error
     if (subscription.error) {
       if (subscription.error.message.includes("Catalogue does not exist")) {
-        console.log("catalogueSubscription", ": Catalogue does not exist");
+        // console.log("catalogueSubscription", ": Catalogue does not exist");
       } else {
         apolloHookErrorHandler("catalogueSubscription", subscription.error);
       }
@@ -76,10 +76,10 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
     if (
       incrrementCatalogueViewsError.message.includes("Catalogue does not exist")
     ) {
-      console.log(
-        "incrementCatalogueViewsMuation",
-        ": Catalogue does not exist",
-      );
+      // console.log(
+      //   "incrementCatalogueViewsMuation",
+      //   ": Catalogue does not exist",
+      // );
     } else {
       apolloHookErrorHandler(
         "incrementCatalogueViewsMuation",
@@ -113,7 +113,6 @@ const useCatalogueApolloHooks: CatalogueHook.FC = ({ id }: Props) => {
 
   const editCatalogueFile = (file: File | undefined, objectKey: string) => {
     if (file) {
-      console.log("file", id, objectKey, file)
       editCatalogueFileMutation({
         variables: {
           id: id,

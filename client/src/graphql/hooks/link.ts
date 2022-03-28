@@ -17,7 +17,6 @@ const LinkApolloHooks: LinkHook.FC = () => {
       id: `Listing:${listing_id}`,
       fields: {
         links(existing) {
-          console.log("existing", existing);
           if (!existing) return [dummyLinkToUse];
           return [...existing, dummyLinkToUse];
         },

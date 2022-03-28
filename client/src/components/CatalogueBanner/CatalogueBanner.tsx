@@ -143,7 +143,6 @@ const CatalogueBanner: React.FC<Props> = ({
                     )
                   }
                   handleSubmit={(color: string) => {
-                    console.log("submit", color);
                     editCatalogue(color, "header_color");
                   }}
                 />
