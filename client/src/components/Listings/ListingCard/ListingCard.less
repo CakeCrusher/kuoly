@@ -4,10 +4,19 @@
   // rotate svg by 90 degrees to the right
   transform: rotate(90deg);
 }
+.drag-overlay {
+  width: 100% !important;
+}
 .listing-card {
   user-select: none;
-  width: 20rem;
   padding: 0 1rem;
+  width: calc(25% - (3rem / 4));
+  @media @laptop {
+    width: calc(33% - (2rem / 3));
+  }
+  @media @tablet {
+    width: calc(50% - (1rem / 2));
+  }
   @media @mobile {
     width: 100%;
   }
@@ -38,6 +47,10 @@
   }
 
   .listing-card-body {
+    height: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     .listing-image-wrapper {
       display: flex;
       align-items: center;

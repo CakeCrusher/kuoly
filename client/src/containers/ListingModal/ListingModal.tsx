@@ -10,6 +10,7 @@ import {
   TextareaInput,
   ListingLabelContainer,
   LinksContainer,
+  CopyToolTip,
 } from "../../components";
 import useListingApolloHooks from "../../graphql/hooks/listing";
 import { useIsEditing } from "../../state/store";
@@ -93,18 +94,15 @@ const ListingModal: React.FC<Props> = ({
               </button>
             )}
 
+            <CopyToolTip text="Copy listing link">
             <button
-              data-tip
-              data-for="share"
               className="btn f-row option"
               onClick={handleShareClick}
             >
               <FiShare2 />
               <div className="fs-1 m-lef-sm">Share</div>
             </button>
-            <ReactTooltip id="share" place="top" effect="solid">
-              Copy listing link
-            </ReactTooltip>
+            </CopyToolTip>
           </div>
           <div className="listing-body-container">
             <div className="left-side side">

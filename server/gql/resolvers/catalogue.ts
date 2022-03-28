@@ -149,7 +149,7 @@ const catalogueResolvers = {
       ): Promise<string> => {
         // get the extension from path
         if (
-          preResult.rows[0].header_color === "#000000" &&
+          preResult.rows[0].header_color === "#C9042C" &&
           key === "header_image_url"
         ) {
           const dominantColor: string | null = await new Promise(

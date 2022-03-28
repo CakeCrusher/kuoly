@@ -16,7 +16,7 @@ CREATE TABLE catalogues (
   description TEXT,
   views INT DEFAULT 0 NOT NULL,
   header_image_url TEXT,
-  header_color TEXT DEFAULT '#000000',
+  header_color TEXT DEFAULT '#C9042C',
   author TEXT,
   profile_picture_url TEXT,
   event_date DATE,

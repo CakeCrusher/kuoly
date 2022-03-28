@@ -6,7 +6,6 @@ import {
   FiEye,
   FiShare2,
 } from "react-icons/fi";
-import ReactTooltip from "react-tooltip";
 import {
   TextInput,
   Dropdown,
@@ -14,6 +13,7 @@ import {
   AvatarImage,
   CalendarInput,
   TextareaInput,
+  CopyToolTip,
 } from "../../components";
 import useCatalogueApolloHooks from "../../graphql/hooks/catalogue";
 import { handleCopy } from "../../utils/functions";
@@ -163,7 +163,8 @@ const CatalogueHeader: React.FC<Props> = ({
               )}
             </div>
             {editable && catalogue.status === "collaborative" ? (
-              <div data-tip data-for="copy-edit" className="btn-wrapper">
+              <CopyToolTip text="Copy editor link">
+              <div className="btn-wrapper">
                 <a
                   onClick={() =>
                     handleCopy(`/ctg/${catalogue.edit_id}?edit=true`)
@@ -173,12 +174,11 @@ const CatalogueHeader: React.FC<Props> = ({
                   <FiBookmark />
                   <div>Editor Link</div>
                 </a>
-                <ReactTooltip id="copy-edit" place="top" effect="solid">
-                  Copy Editor Link
-                </ReactTooltip>
               </div>
+              </CopyToolTip>
             ) : null}
-            <div data-tip data-for="copy-share" className="btn-wrapper">
+            <CopyToolTip text="Copy link">
+            <div className="btn-wrapper">
               <a
                 onClick={() => handleCopy(`/ctg/${catalogue.id}`)}
                 className="btn btn-icon"
@@ -186,10 +186,8 @@ const CatalogueHeader: React.FC<Props> = ({
                 <FiShare2 />
                 <div>Share</div>
               </a>
-              <ReactTooltip id="copy-share" place="top" effect="solid">
-                Copy Link
-              </ReactTooltip>
             </div>
+            </CopyToolTip>
           </div>
           <div className="dropdown-wrapper">
             <span className="status-label">This list is: </span>

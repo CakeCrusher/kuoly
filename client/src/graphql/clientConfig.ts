@@ -10,7 +10,6 @@ if (!authorization) {
   console.log("newUuid", newUuid);
   localStorage.setItem("authorization", newUuid);
 }
-console.log("authorization", authorization);
 
 export const httpLink = createUploadLink({
   uri: window.location.origin + "/graphql",

@@ -31,3 +31,4 @@ export { default as Feedback } from "./Feedback/Feedback";
 export { default as IconButton } from "./IconButton/IconButton";
 
 export { default as ListingsFilter } from "./ListingsFilter/ListingsFilter";
+export {default as CopyToolTip} from "./CopyToolTip/CopyToolTip";

@@ -2,9 +2,9 @@ import React from "react";
 import { DeleteCatalogueButton } from "..";
 import { Share2 } from "../../assets";
 import { handleCopy } from "../../utils/functions";
-import ReactTooltip from "react-tooltip";
 
 import "./CatalogueCard.less";
+import CopyToolTip from "../CopyToolTip/CopyToolTip";
 
 type Props = {
   catalogue: CatalogueStub;
@@ -68,9 +68,8 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
         </div>
         <div className="f-row options-row">
           <DeleteCatalogueButton id={catalogue.id} />
+          <CopyToolTip text="Copy catalogue link">
           <button
-            data-tip
-            data-for="share"
             className="btn f-row option"
             onClick={handleShareClick}
           >
@@ -79,9 +78,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
             </div>
             <div className="fs-1">Share</div>
           </button>
-          <ReactTooltip id="share" place="top" effect="solid">
-            Copy catalogue link
-          </ReactTooltip>
+          </CopyToolTip>
         </div>
       </div>
     </div>

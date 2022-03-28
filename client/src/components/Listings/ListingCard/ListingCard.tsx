@@ -15,6 +15,7 @@ type Props = {
   selectListing: (listingId: string) => void;
   deleteListing: (id: string) => void;
   hide?: boolean;
+  dragOverlay?: boolean;
 };
 
 const ListingCard: React.FC<Props> = ({
@@ -23,6 +24,7 @@ const ListingCard: React.FC<Props> = ({
   selectListing,
   deleteListing,
   hide,
+  dragOverlay,
 }) => {
   const { listingsFilter } = useListingsFilter();
   const navigate = useNavigate();
@@ -64,7 +66,7 @@ const ListingCard: React.FC<Props> = ({
       onClick={handleSelect}
       className={`card ${isEditing ? "editing" : ""} listing-card ${
         hide && "hide"
-      }`}
+      } ${dragOverlay && "drag-overlay"}`}
       ref={setNodeRef}
       style={style}
     >
@@ -89,6 +91,7 @@ const ListingCard: React.FC<Props> = ({
         )}
       </div>
       <div className="card-body listing-card-body">
+        <div>
         {listing.image_url && (
           <div
             className={`listing-image-wrapper ${
@@ -130,6 +133,7 @@ const ListingCard: React.FC<Props> = ({
             <span className="price">~${listing.price}</span>
           </div>
         )}
+        </div>
 
         <div
           className={`listing-links-container ${

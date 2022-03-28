@@ -73,7 +73,7 @@ const Catalogue: React.FC = () => {
 
   let catalogue: CatalogueType | null = null;
   if (catalogueQuery.error) {
-    return <div>Catalogue not found</div>;
+    return <div className="message">Catalogue not found</div>;
   }
 
   if (catalogueQuery.data && catalogueQuery.data.catalogues[0]) {
@@ -87,7 +87,7 @@ const Catalogue: React.FC = () => {
   }
 
   if (!catalogue) {
-    return <div>Loading...</div>;
+    return <div className="message">Loading...</div>;
   }
   // console.log("catalogue", catalogue);
 
@@ -146,7 +146,7 @@ const Catalogue: React.FC = () => {
       <div
         style={{
           flex: "1 0 auto",
-          backgroundColor: `${catalogue.header_color}66`,
+          backgroundColor: `${catalogue.header_color}22`,
         }}
       >
         <div className="page-wrapper">
