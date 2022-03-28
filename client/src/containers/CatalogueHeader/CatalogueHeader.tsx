@@ -162,7 +162,7 @@ const CatalogueHeader: React.FC<Props> = ({
                 </>
               )}
             </div>
-            {editable && (
+            {editable && catalogue.status === "collaborative" ? (
               <div data-tip data-for="copy-edit" className="btn-wrapper">
                 <a
                   onClick={() =>
@@ -177,7 +177,7 @@ const CatalogueHeader: React.FC<Props> = ({
                   Copy Editor Link
                 </ReactTooltip>
               </div>
-            )}
+            ) : null}
             <div data-tip data-for="copy-share" className="btn-wrapper">
               <a
                 onClick={() => handleCopy(`/ctg/${catalogue.id}`)}
