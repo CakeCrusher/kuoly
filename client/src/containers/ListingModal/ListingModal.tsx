@@ -147,7 +147,7 @@ const ListingModal: React.FC<Props> = ({
               />
               {labels && labels.length > 0 && (
                 <div className="m-bot">
-                  <h3 className="field-title">Select labels</h3>
+                  {isEditing && <h3 className="field-title">Select labels</h3>}
                   <div>
                     <ListingLabelContainer
                       labels={labels}

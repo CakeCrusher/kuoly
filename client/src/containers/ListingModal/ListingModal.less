@@ -3,6 +3,8 @@
 .listing-container {
   display: flex;
   flex-direction: column;
+  @media @mobile {
+  }
 }
 .header-buttons {
   display: flex;
@@ -12,20 +14,21 @@
   @media @mobile {
     align-self: flex-start !important;
     column-gap: 0.5rem;
+    padding: 0 1rem !important;
   }
 }
 
 .listing-body-container {
-  width: 100%;
+  width: 50rem;
   display: flex;
   flex-direction: row !important;
   justify-content: space-between;
   column-gap: 1.5rem;
-  // width: 100% !important;
+  padding: 0 1rem !important;
   @media @mobile {
     display: flex;
     flex-direction: column !important;
-    max-width: 100vw !important;
+    width: 100vw !important;
   }
 
   .side {
