@@ -1,7 +1,9 @@
 import { useSortable } from "@dnd-kit/sortable";
 import React from "react";
 import { FiX } from "react-icons/fi";
+import { MdOutlineDragIndicator } from "react-icons/md";
 import { useListingsFilter } from "../../state/store";
+import { textClipper } from "../../utils/functions";
 
 import "./Label.less";
 
@@ -66,9 +68,16 @@ const Label: React.FC<LabelProps> = ({
       {...attributes}
       style={style}
     >
-      <span>{label.name}</span>
+      <span>{textClipper(label.name, 20)}</span>
+      {isEditing && deleteLabel ? (
+        <div className="drag-indicator">
+          <MdOutlineDragIndicator />
+        </div>
+      ) : null}
 
       <button
+        onMouseDown={(e) => e.stopPropagation()}
+        onTouchStart={(e) => e.stopPropagation()}
         onClick={handleDeleteClick}
         className="f-row f-center btn-circle neg delete-label"
       >

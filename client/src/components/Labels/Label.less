@@ -1,14 +1,25 @@
 @import "../../App.less";
 
+.drag-indicator {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.2rem;
+  opacity: 0.5;
+}
+
 .label {
   height: 2rem;
   display: flex;
   color: #pallette[dark];
   border: 1px solid #pallette[grey];
   background-color: #pallette[silver];
-  padding: 0.2rem 1rem;
+  padding: 0.2rem 1.5rem;
   border-radius: 100px;
   user-select: none;
+  position: relative;
+  // allow text to continue without wrapping
+  white-space: nowrap;
+  overflow: hidden;
   &.clickable {
     background-color: #pallette[lightdark];
     color: white;
@@ -24,6 +35,7 @@
   }
 
   &.show-delete {
+    padding-right: 0.5rem;
     .delete-label {
       .delete-btn;
       display: block;

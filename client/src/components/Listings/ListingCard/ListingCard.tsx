@@ -82,6 +82,8 @@ const ListingCard: React.FC<Props> = ({
               <MdOutlineDragIndicator className="drag-handle-icon" />
             )}
             <button
+              onMouseDown={(e) => e.stopPropagation()}
+              onTouchStart={(e) => e.stopPropagation()}
               onClick={handleDelete}
               className="btn-circle neg delete-btn icon-button"
             >

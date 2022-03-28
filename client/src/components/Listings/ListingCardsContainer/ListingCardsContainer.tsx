@@ -90,9 +90,9 @@ const ListingCardsContainer: React.FC<Props> = ({
     setDraggingId(null);
   };
 
-  // const listingsFromIds = listingIds
-  //   .map((listingId) => listings.find((listing) => listing.id === listingId)!)
-  //   .filter((listing) => listing !== undefined);
+  const listingsFromIds = listingIds
+    .map((listingId) => listings.find((listing) => listing.id === listingId)!)
+    .filter((listing) => listing !== undefined);
 
   if (!listings.length) {
     return (
@@ -118,7 +118,7 @@ const ListingCardsContainer: React.FC<Props> = ({
             collisionDetection={closestCenter}
           >
             <SortableContext items={listingIds} strategy={rectSortingStrategy}>
-              {listings.map((listing: Listing) => (
+              {listingsFromIds.map((listing: Listing) => (
                 <ListingCard
                   key={listing.id}
                   listing={listing}
