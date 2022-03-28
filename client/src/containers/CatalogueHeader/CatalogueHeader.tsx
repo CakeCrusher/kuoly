@@ -190,7 +190,7 @@ const CatalogueHeader: React.FC<Props> = ({
             </CopyToolTip>
           </div>
           <div className="dropdown-wrapper">
-            <span className="status-label">This list is: </span>
+            <span className="status-label">This catalogue is: </span>
             <Dropdown
               value={catalogue.status}
               handleSubmit={editCatalogue}
