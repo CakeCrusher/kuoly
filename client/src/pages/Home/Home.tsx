@@ -21,7 +21,7 @@ const Home = () => {
         <CreateCatalogueButton className="create" />
         {cachedData && cachedData.myCatalogues.length ? (
           <Link className="btn btn-outline" to={`/catalogues`}>
-            My Catalogues
+            My Lists
           </Link>
         ) : null}
       </div>

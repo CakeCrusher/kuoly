@@ -45,7 +45,7 @@ const CreateCatalogueButton = ({
 
   return (
     <button onClick={handleClick} className={`btn ${className}`}>
-      Create Catalogue
+      Create List
     </button>
   );
 };
