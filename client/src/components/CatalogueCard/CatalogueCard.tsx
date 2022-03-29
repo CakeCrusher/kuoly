@@ -80,7 +80,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
             <div className="fs-1">Share</div>
           </button>
           <ReactTooltip id="share" place="top" effect="solid">
-            Copy catalogue link
+            Copy list link
           </ReactTooltip>
         </div>
       </div>
