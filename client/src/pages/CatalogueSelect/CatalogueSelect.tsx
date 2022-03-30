@@ -15,13 +15,13 @@ const CatalogueSelect = () => {
   apolloHookErrorHandler("CatalogueSelect.tsx", results.error);
 
   if (results.loading) {
-    return <div>Loading...</div>;
+    return <div className="message">Loading...</div>;
   }
 
   return (
     <div className="page-container catalogue-select-container">
       <div className="title-row">
-        <h2>My Lists</h2>
+        <h3 className="my-lists-title">My Lists</h3>
         <p>All lists saved on this device</p>
       </div>
       <CatalogueSelectItems catalogues={results.data.myCatalogues} />

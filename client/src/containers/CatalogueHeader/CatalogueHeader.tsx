@@ -61,15 +61,19 @@ const CatalogueHeader: React.FC<Props> = ({
         <div className="left-half">
           {/* avatar, author, title */}
           <div className="avatar-author-title-container">
-            <div className="avatar-image-wrapper">
-              <AvatarImage
-                isEditing={isEditing}
-                handleSubmit={editCatalogueFile}
-                handleDelete={editCatalogue}
-                keyProp={"profile_picture_url"}
-                value={catalogue.profile_picture_url || ""}
-              />
-            </div>
+            {catalogue.profile_picture_url || isEditing ? (
+              <div className="avatar-image-wrapper">
+                <AvatarImage
+                  isEditing={isEditing}
+                  handleSubmit={editCatalogueFile}
+                  handleDelete={editCatalogue}
+                  keyProp={"profile_picture_url"}
+                  value={catalogue.profile_picture_url || ""}
+                />
+              </div>
+            ) : (
+              <div></div>
+            )}
             <div className="author-title-wrapper">
               <TextInput
                 isEditing={isEditing}

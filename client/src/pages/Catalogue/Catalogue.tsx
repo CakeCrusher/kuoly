@@ -97,7 +97,11 @@ const Catalogue: React.FC = () => {
     case "private":
       if (current_user_id !== catalogue.user_id) {
         if (isEditing) setIsEditing(false);
-        return <div className="message">Private catalogue, only visible to owner.</div>;
+        return (
+          <div className="message">
+            Private catalogue, only visible to owner.
+          </div>
+        );
       }
       break;
     case "public":

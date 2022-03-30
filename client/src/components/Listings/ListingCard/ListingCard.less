@@ -9,9 +9,13 @@
   height: 100% !important;
 }
 .listing-card {
+  cursor: pointer;
   user-select: none;
   padding: 0 1rem;
   width: calc(25% - (3rem / 4));
+  &:hover {
+    border: 1px solid #pallette[lightdark];
+  }
   @media @laptop {
     width: calc(33% - (2rem / 3));
   }
