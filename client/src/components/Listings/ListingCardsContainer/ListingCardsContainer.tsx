@@ -75,9 +75,6 @@ const ListingCardsContainer: React.FC<Props> = ({
       setListingIds((items) => {
         const oldIndex = items.indexOf(event.active.id);
         const newIndex = items.indexOf(event.over!.id);
-        console.log(oldIndex, newIndex);
-
-        console.log(arrayMove(items, oldIndex, newIndex))
 
         return arrayMove(items, oldIndex, newIndex);
       });
