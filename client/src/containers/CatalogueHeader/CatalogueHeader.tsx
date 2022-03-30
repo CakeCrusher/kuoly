@@ -164,33 +164,33 @@ const CatalogueHeader: React.FC<Props> = ({
             </div>
             {editable && catalogue.status === "collaborative" ? (
               <CopyToolTip text="Copy editor link">
-              <div className="btn-wrapper">
-                <a
-                  onClick={() =>
-                    handleCopy(`/ctg/${catalogue.edit_id}?edit=true`)
-                  }
-                  className="btn-icon btn"
-                >
-                  <FiBookmark />
-                  <div>Editor Link</div>
-                </a>
-              </div>
+                <div className="btn-wrapper">
+                  <a
+                    onClick={() =>
+                      handleCopy(`/ctg/${catalogue.edit_id}?edit=true`)
+                    }
+                    className="btn-icon btn"
+                  >
+                    <FiBookmark />
+                    <div>Editor Link</div>
+                  </a>
+                </div>
               </CopyToolTip>
             ) : null}
             <CopyToolTip text="Copy link">
-            <div className="btn-wrapper">
-              <a
-                onClick={() => handleCopy(`/ctg/${catalogue.id}`)}
-                className="btn btn-icon"
-              >
-                <FiShare2 />
-                <div>Share</div>
-              </a>
-            </div>
+              <div className="btn-wrapper">
+                <a
+                  onClick={() => handleCopy(`/ctg/${catalogue.id}`)}
+                  className="btn btn-icon"
+                >
+                  <FiShare2 />
+                  <div>Share</div>
+                </a>
+              </div>
             </CopyToolTip>
           </div>
           <div className="dropdown-wrapper">
-            <span className="status-label">This catalogue is: </span>
+            <span className="status-label">This list is: </span>
             <Dropdown
               value={catalogue.status}
               handleSubmit={editCatalogue}

@@ -68,7 +68,7 @@ const CatalogueCard: React.FC<Props> = ({ catalogue }) => {
         </div>
         <div className="f-row options-row">
           <DeleteCatalogueButton id={catalogue.id} />
-          <CopyToolTip text="Copy catalogue link">
+          <CopyToolTip text="Copy list link">
             <button className="btn f-row option" onClick={handleShareClick}>
               <div>
                 <img src={Share2} alt="share" />

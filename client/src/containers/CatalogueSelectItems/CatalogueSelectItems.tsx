@@ -43,7 +43,7 @@ const CatalogueCards: React.FC<Props> = ({ catalogues }) => {
       <CreateCatalogueButton className="catalogue-card-wrapper">
         <div className="card f-col catalogue-card add-catalogue">
           <div className="f-col card-body">
-            <div className="text">Create a Catalogue</div>
+            <div className="text">Create a List</div>
             <FiPlus className="add-icon" size="3rem" />
           </div>
         </div>

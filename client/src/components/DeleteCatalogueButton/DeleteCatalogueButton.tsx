@@ -45,7 +45,7 @@ const DeleteCatalogueButton: React.FC<{
       </button>
       <Modal show={showModal} close={handleClose}>
         <Modal.Header close={handleClose}> </Modal.Header>
-        <Modal.Body>Are you sure you want to delete this catalogue?</Modal.Body>
+        <Modal.Body>Are you sure you want to delete this list?</Modal.Body>
         <Modal.Footer>
           <div className="g-row options-container">
             <button className="btn btn-secondary-outline" onClick={handleClose}>

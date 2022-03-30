@@ -11,7 +11,8 @@ type ItemProps = {
 const Item: React.FC<ItemProps> = ({ children, className, value, title }) => {
   const { setActiveValue, setShow } = React.useContext(DropDownContext);
 
-  const handleSelect = () => {
+  const handleSelect = (e: any) => {
+    e.stopPropagation();
     setActiveValue(value);
     setShow(false);
   };
@@ -20,7 +21,7 @@ const Item: React.FC<ItemProps> = ({ children, className, value, title }) => {
     <div
       title={title}
       className={`dropdown-item ${className ? className : ""}`}
-      onClick={handleSelect}
+      onMouseDown={handleSelect}
     >
       {children}
     </div>

@@ -53,7 +53,7 @@ const Home = () => {
           <div className="description">How it Works</div>
           <iframe
             className="video"
-            src="https://www.youtube.com/embed/Ym6DU9Nzh1s"
+            src="https://www.youtube.com/embed/0usefGJbm1k"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           ></iframe>
