@@ -13,6 +13,10 @@
     <meta name="robots" content="index,follow" />
     <!-- <link rel="canonical" href="URL for this page"> -->
     <!-- create a meta tag with many images -->
+    <% if( image_url !==
+    "https://storage.googleapis.com/givespace-pictures/Logo.svg"){ %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <% } %>
 
     <meta name="twitter:label1" value="Items" />
     <meta name="twitter:data1" value="<%= items_count %>" />
