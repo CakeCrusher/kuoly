@@ -151,7 +151,7 @@ const CatalogueBanner: React.FC<Props> = ({
           </div>
           {/* background images */}
           <div
-            style={value ? {} : { borderWidth: "2px" }}
+            style={value ? {} : { borderWidth: "2px", height: "3.5rem" }}
             className={`toggle-input image-wrapper`}
           >
             <img id="header-image-display" src={value} alt="" />
