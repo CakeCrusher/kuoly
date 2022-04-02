@@ -6,6 +6,6 @@
 Easy, custom, shareable
 product lists.
 
-<h3><a href="http://kuoly.com/" target="_blank" >
+<h3><a href="https://www.kuoly.com/" target="_blank" >
     Link
 </a></h3>
