@@ -1,8 +1,25 @@
 const path = require("path");
 const dotenv = require("dotenv");
+const webpack = require("webpack");
+const DuplicatePackageCheckerPlugin = require("duplicate-package-checker-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 dotenv.config();
 
 module.exports = {
+  plugins: [
+    new webpack.DefinePlugin({
+      // <-- key to reducing React's size
+      "process.env": {
+        NODE_ENV: JSON.stringify("production"),
+      },
+    }),
+    new DuplicatePackageCheckerPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
+  ],
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
   mode: process.env.NODE_ENV,
   context: path.join(__dirname, "client"),
   entry: {
