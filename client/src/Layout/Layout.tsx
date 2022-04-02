@@ -28,14 +28,19 @@ const Layout: React.FC = ({ children }) => {
       </div>
       <div className="false-nav" />
       {children}
-      <div id="footer">
-        <div className="footer-text">
-          Got questions or comments? Contact us at{" "}
-          <a href="mailto:contact@kuoly.com">
-            <strong className="contact">contact@kuoly.com</strong>
-          </a>
+      <div className="footer-wrapper">
+        <div id="footer">
+          <div className="footer-text">
+            Got questions or comments? Contact us at{" "}
+            <a href="mailto:contact@kuoly.com">
+              <strong className="contact">contact@kuoly.com</strong>
+            </a>
+          </div>
+          <Feedback />
         </div>
-        <Feedback />
+        <Link className="footer-link" to="/api">
+          Kuoly API
+        </Link>
       </div>
       <UndoNotification />
     </div>

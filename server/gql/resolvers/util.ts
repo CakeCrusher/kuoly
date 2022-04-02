@@ -172,8 +172,11 @@ const userResolvers = {
           await listingProcess(listing, newLabels);
         }
       }
-
-      return "http://localhost:4000/ctg/" + newCatalogue.id;
+      let returnBaseLink =
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:4000/ctg/"
+          : "https://www.kuoly.com/ctg/";
+      return returnBaseLink + newCatalogue.id;
     },
   },
   Subscription: {},

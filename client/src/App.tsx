@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Catalogue, CatalogueSelect } from "./pages";
+import { Home, Catalogue, CatalogueSelect, Api } from "./pages";
 import { useQuery } from "@apollo/client";
 import { MY_CATALOGUES } from "./graphql/schemas";
 import { apolloHookErrorHandler } from "./utils/functions";
@@ -50,6 +50,7 @@ const App = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/api" element={<Api />} />
             <Route path="/catalogues" element={<CatalogueSelect />} />
             <Route path="/ctg/:corresponding_id/*" element={<Catalogue />} />
           </Routes>

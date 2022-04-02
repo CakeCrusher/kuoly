@@ -41,6 +41,10 @@ app.get("/catalogues", async (_req, res) => {
 
 // create an app.get that accepts two different urls like /api/users and /api/posts
 
+app.get("/api", async (_req, res) => {
+  res.status(200).render("api");
+});
+
 app.get(
   ["/ctg/:catalogue_id/:listing_id", "/ctg/:catalogue_id"],
   async (req, res) => {
