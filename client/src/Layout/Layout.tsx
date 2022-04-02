@@ -38,9 +38,18 @@ const Layout: React.FC = ({ children }) => {
           </div>
           <Feedback />
         </div>
-        <Link className="footer-link" to="/api">
-          Kuoly API
-        </Link>
+        <div className="misc-links">
+          <Link className="footer-link" to="/api">
+            Kuoly API
+          </Link>
+          <a
+            href="https://github.com/CakeCrusher/kuoly"
+            target="_blank"
+            className="footer-link"
+          >
+            Kuoly GitHub
+          </a>
+        </div>
       </div>
       <UndoNotification />
     </div>
