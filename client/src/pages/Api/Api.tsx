@@ -8,7 +8,7 @@ const Api = () => {
       <h3 className="api-title">Our API interface</h3>
       <iframe
         className="video"
-        src="https://www.youtube.com/embed/0usefGJbm1k"
+        src="https://www.youtube.com/embed/bsG_u6hCrjE"
         title="YouTube video player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>

@@ -71,10 +71,7 @@ const userResolvers = {
         .join(",")}) RETURNING *`;
       const newCatalogueRaw: QueryResult<Catalogue> = await db.query(
         catalogueQuery,
-        [
-          "6a3a2967-0258-4caf-8fef-f844c060b2f2",
-          ...catalogueFields.map((field) => field[1]),
-        ]
+        [process.env.API_USER, ...catalogueFields.map((field) => field[1])]
       );
       const newCatalogue: Catalogue = newCatalogueRaw.rows[0];
 
