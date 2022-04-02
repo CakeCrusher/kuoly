@@ -1,9 +1,12 @@
 import { Client } from "pg";
 import fs from "fs";
 
-const sslVar = process.env.NODE_ENV === "development" ? false : {
-  rejectUnauthorized: false,
-}
+const sslVar =
+  process.env.NODE_ENV === "development"
+    ? false
+    : {
+        rejectUnauthorized: false,
+      };
 const db = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: sslVar,
